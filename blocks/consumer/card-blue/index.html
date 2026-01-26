@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consumer - Card Blue</title>
+    <link rel="stylesheet" href="../../../assets/dist/css/main.min.css" type="text/css" media="all">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <h2>Card - Blue</h2>
+          <div class="mb-3" id="sdkStatus" aria-live="polite"></div>
+          <form>
+            <div class="mb-3">
+              <label for="headline" class="form-label">Headline</label>
+              <input type="text" class="form-control" id="headline">
+              <div class="invalid-feedback" id="headlineError">Headline is required.</div>
+            </div>
+            <div class="mb-3">
+              <label for="bodyText" class="form-label">Body</label>
+              <textarea class="form-control" id="bodyText" rows="2"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="ctaText" class="form-label">CTA Text</label>
+              <input type="text" class="form-control" id="ctaText">
+              <div class="invalid-feedback" id="ctaTextError">CTA text is required.</div>
+            </div>
+            <div class="mb-3">
+              <label for="ctaLink" class="form-label">CTA Link</label>
+              <input type="text" class="form-control" id="ctaLink">
+              <div class="invalid-feedback" id="ctaLinkError">CTA link must be a valid http(s) URL.</div>
+            </div>
+            <div class="mb-3">
+              <label for="imageUrl" class="form-label">Image URL</label>
+              <input type="text" class="form-control" id="imageUrl">
+              <div class="invalid-feedback" id="imageUrlError">Image URL must be a valid http(s) URL.</div>
+            </div>
+            <button type="button" class="btn btn-small btn-secondary" id="resetBtn">Reset</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../../assets/dist/js/blocksdk.min.js"></script>
+    <script src="../../../assets/dist/js/block-core.js"></script>
+
+    <script>
+      const defaults = {
+        headline: "Lorem ipsum dolor sit amet",
+        bodyText: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.",
+        ctaText: "Lorem ipsum dolor",
+        ctaLink: "https://www.travelwisconsin.com",
+        imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/7e0b05cc-c1e4-4e06-801a-f5855afa1eb6.jpg",
+      };
+
+      function buildEmailHtml(data) {
+        const headline = window.BlockCore.escapeHtml(data.headline);
+        const bodyText = window.BlockCore.escapeHtml(data.bodyText).replace(/\n/g, "<br/>");
+        const ctaText = window.BlockCore.escapeHtml(data.ctaText);
+        const ctaLink = window.BlockCore.escapeHtml(data.ctaLink);
+        const imageUrl = window.BlockCore.escapeHtml(data.imageUrl);
+
+        return `<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+
+      <div style="margin: 0px auto; max-width: 600px">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width: 100%">
+          <tbody>
+            <tr>
+              <td style="direction: ltr; font-size: 0px; padding: 15px; text-align: center">
+                <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:570px;" width="570" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+
+                <div style="margin: 0px auto; border-radius: 12px 12px 0 0; max-width: 570px">
+                  <table
+                    align="center"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    role="presentation"
+                    style="width: 100%; border-radius: 12px 12px 0 0"
+                  >
+                    <tbody>
+                      <tr>
+                        <td style="direction: ltr; font-size: 0px; padding: 0; text-align: center">
+                          <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:570px;" ><![endif]-->
+
+                          <div
+                            class="mj-column-per-100 mj-outlook-group-fix"
+                            style="
+                              font-size: 0px;
+                              text-align: left;
+                              direction: ltr;
+                              display: inline-block;
+                              vertical-align: top;
+                              width: 100%;
+                            "
+                          >
+                            <table
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="vertical-align: top"
+                              width="100%"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td align="center" style="font-size: 0px; padding: 0; word-break: break-word">
+                                    <table
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      role="presentation"
+                                      style="border-collapse: collapse; border-spacing: 0px"
+                                      class="mj-full-width-mobile"
+                                    >
+                                      <tbody>
+                                        <tr>
+                                          <td style="width: 570px" class="mj-full-width-mobile">
+                                            <img
+                                              alt=""
+                                              src="${imageUrl}"
+                                              style="
+                                                border: 0;
+                                                border-radius: 16px 16px 0 0;
+                                                display: block;
+                                                outline: none;
+                                                text-decoration: none;
+                                                height: auto;
+                                                width: 100%;
+                                                font-size: 14px;
+                                              "
+                                              width="570"
+                                              height="auto"
+                                            />
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                          <!--[if mso | IE]></td></tr></table><![endif]-->
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!--[if mso | IE]></td></tr></table></td></tr><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:570px;" width="570" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+
+                <div style="margin: 0px auto; max-width: 570px">
+                  <table
+                    align="center"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    role="presentation"
+                    style="width: 100%"
+                  >
+                    <tbody>
+                      <tr>
+                        <td style="direction: ltr; font-size: 0px; padding: 0; text-align: center">
+                          <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:570px;" ><![endif]-->
+
+                          <div
+                            class="mj-column-per-100 mj-outlook-group-fix"
+                            style="
+                              font-size: 0px;
+                              text-align: left;
+                              direction: ltr;
+                              display: inline-block;
+                              vertical-align: top;
+                              width: 100%;
+                            "
+                          >
+                            <table
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="vertical-align: top"
+                              width="100%"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td align="center" style="font-size: 0px; padding: 0; word-break: break-word">
+                                    <table
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      role="presentation"
+                                      style="border-collapse: collapse; border-spacing: 0px"
+                                      class="mj-full-width-mobile"
+                                    >
+                                      <tbody>
+                                        <tr>
+                                          <td style="width: 570px" class="mj-full-width-mobile">
+                                            <img
+                                              alt=""
+                                              src="https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/bd75dafc-5c30-4d7d-a4bf-5596f6c435ee.png"
+                                              style="
+                                                border: 0;
+                                                display: block;
+                                                outline: none;
+                                                text-decoration: none;
+                                                height: auto;
+                                                width: 100%;
+                                                font-size: 14px;
+                                              "
+                                              width="570"
+                                              height="auto"
+                                            />
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                          <!--[if mso | IE]></td></tr></table><![endif]-->
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!--[if mso | IE]></td></tr></table></td></tr><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:570px;" width="570" bgcolor="#004D71" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+
+                <div
+                  style="
+                    background: #004d71;
+                    background-color: #004d71;
+                    margin: 0px auto;
+                    border-radius: 0 0 12px 12px;
+                    max-width: 570px;
+                  "
+                >
+                  <table
+                    align="center"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    role="presentation"
+                    style="background: #004d71; background-color: #004d71; width: 100%; border-radius: 0 0 12px 12px"
+                  >
+                    <tbody>
+                      <tr>
+                        <td style="direction: ltr; font-size: 0px; padding: 22px 50px; text-align: center">
+                          <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:470px;" ><![endif]-->
+
+                          <div
+                            class="mj-column-per-100 mj-outlook-group-fix"
+                            style="
+                              font-size: 0px;
+                              text-align: left;
+                              direction: ltr;
+                              display: inline-block;
+                              vertical-align: top;
+                              width: 100%;
+                            "
+                          >
+                            <table
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              role="presentation"
+                              style="vertical-align: top"
+                              width="100%"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td align="center" style="font-size: 0px; padding: 0; word-break: break-word">
+                                    <div
+                                      style="
+                                        font-family: &quot;Source Sans Pro&quot;, Tahoma, Verdana, Segoe, sans-serif;
+                                        font-size: 23px;
+                                        font-weight: bold;
+                                        line-height: 1;
+                                        text-align: center;
+                                        color: #ffffff;
+                                      "
+                                    >${headline}</div>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td align="center" style="font-size: 0px; padding: 8px 0px; word-break: break-word">
+                                    <div
+                                      style="
+                                        font-family: &quot;Source Sans Pro&quot;, Tahoma, Verdana, Segoe, sans-serif;
+                                        font-size: 16px;
+                                        line-height: 24px;
+                                        text-align: center;
+                                        color: #ffffff;
+                                      "
+                                    >${bodyText}</div>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td align="center" style="font-size: 0px; padding: 10px 25px; word-break: break-word">
+                                    <table
+                                      border="0"
+                                      cellpadding="0"
+                                      cellspacing="0"
+                                      role="presentation"
+                                      style="border-collapse: separate; line-height: 100%"
+                                    >
+                                      <tbody>
+                                        <tr>
+                                          <td
+                                            align="center"
+                                            bgcolor="#ffffff"
+                                            role="presentation"
+                                            style="
+                                              border: none;
+                                              border-radius: 100px;
+                                              cursor: auto;
+                                              mso-padding-alt: 10px 25px;
+                                              background: #ffffff;
+                                            "
+                                            valign="middle"
+                                          >
+                                            <!--[if mso]>
+                                              <v:roundrect
+                                                xmlns:v="urn:schemas-microsoft-com:vml"
+                                                xmlns:w="urn:schemas-microsoft-com:office:word"
+                                                href="${ctaLink}"
+                                                style="height:44px;v-text-anchor:middle;width:240px;"
+                                                arcsize="50%"
+                                                stroke="f"
+                                                fillcolor="#ffffff"
+                                              >
+                                                <w:anchorlock/>
+                                                <center
+                                                  style="color:#004d71;font-family:'Source Sans Pro', Tahoma, Verdana, Segoe, sans-serif;font-size:16px;font-weight:bold;"
+                                                >${ctaText}</center>
+                                              </v:roundrect>
+                                            <![endif]-->
+                                            <!--[if !mso]><!-->
+                                              <a
+                                                href="${ctaLink}"
+                                                style="
+                                                  display: inline-block;
+                                                  background: #ffffff;
+                                                  color: #004d71;
+                                                  font-family:
+                                                    &quot;Source Sans Pro&quot;, Tahoma, Verdana, Segoe, sans-serif;
+                                                  font-size: 16px;
+                                                  font-weight: bold;
+                                                  line-height: 24px;
+                                                  margin: 0;
+                                                  text-decoration: none;
+                                                  text-transform: none;
+                                                  padding: 10px 25px;
+                                                  mso-padding-alt: 0px;
+                                                  border-radius: 100px;
+                                                "
+                                                target="_blank"
+                                              >${ctaText}</a>
+                                            <!--<![endif]-->
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                          <!--[if mso | IE]></td></tr></table><![endif]-->
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!--[if mso | IE]></td></tr></table></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!--[if mso | IE]></td></tr></table><![endif]-->`.trim();
+      }
+
+      function validate(data) {
+        const errors = {};
+        if (!String(data.headline || "").trim()) errors.headline = "Headline is required.";
+        if (!String(data.ctaText || "").trim()) errors.ctaText = "CTA text is required.";
+        if (!window.BlockCore.isValidHttpUrl(data.ctaLink)) errors.ctaLink = "CTA link must be a valid http(s) URL.";
+        if (!window.BlockCore.isValidHttpUrl(data.imageUrl)) errors.imageUrl = "Image URL must be a valid http(s) URL.";
+        return errors;
+      }
+
+      window.BlockCore.initBlock({
+        fieldIds: ["headline", "bodyText", "ctaText", "ctaLink", "imageUrl"],
+        defaults,
+        buildEmailHtml,
+        validate,
+        debounceMs: 250,
+      });
+    </script>
+  </body>
+</html>
