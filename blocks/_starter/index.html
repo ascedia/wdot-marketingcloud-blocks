@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Block Starter</title>
+    <link rel="stylesheet" href="../../assets/dist/css/main.min.css" type="text/css" media="all">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <h2>Block Starter</h2>
+          <div class="mb-3" id="sdkStatus" aria-live="polite"></div>
+          <form>
+            <div class="mb-3">
+              <label for="headline" class="form-label">Headline</label>
+              <input type="text" class="form-control" id="headline">
+              <div class="invalid-feedback" id="headlineError">Headline is required.</div>
+            </div>
+            <div class="mb-3">
+              <label for="bodyText" class="form-label">Body</label>
+              <textarea class="form-control" id="bodyText" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="ctaText" class="form-label">CTA Text</label>
+              <input type="text" class="form-control" id="ctaText">
+              <div class="invalid-feedback" id="ctaTextError">CTA text is required.</div>
+            </div>
+            <div class="mb-3">
+              <label for="imageUrl" class="form-label">Image URL</label>
+              <input type="text" class="form-control" id="imageUrl">
+              <div class="invalid-feedback" id="imageUrlError">Image URL must be a valid http(s) URL.</div>
+            </div>
+            <button type="button" class="btn btn-small btn-secondary" id="resetBtn">Reset</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../assets/dist/js/blocksdk.min.js"></script>
+    <script src="../../assets/dist/js/block-core.js"></script>
+
+    <script>
+      const defaults = {
+        headline: "Your Headline",
+        bodyText: "Short supporting text goes here.",
+        ctaText: "Call to Action",
+        imageUrl: "https://example.com/your-image.jpg",
+      };
+
+      function buildEmailHtml(data) {
+        const headline = window.BlockCore.escapeHtml(data.headline);
+        const bodyText = window.BlockCore.escapeHtml(data.bodyText).replace(/\n/g, "<br/>");
+        const ctaText = window.BlockCore.escapeHtml(data.ctaText);
+        const imageUrl = window.BlockCore.escapeHtml(data.imageUrl);
+
+        return `
+          <div style="background:#f5f5f5;padding:20px;max-width:600px;margin:0 auto;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:6px;overflow:hidden;">
+              <tr>
+                <td>
+                  <img src="${imageUrl}" width="600" height="auto" style="display:block;width:100%;height:auto;border:0;" alt="" />
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:24px;font-family:Tahoma, Verdana, Segoe, sans-serif;">
+                  <div style="font-size:20px;font-weight:bold;line-height:1.2;color:#1a1a1a;">${headline}</div>
+                  <div style="margin-top:12px;font-size:14px;line-height:1.5;color:#3a3a3a;">${bodyText}</div>
+                  <div style="margin-top:18px;">
+                    <a href="#" style="display:inline-block;background:#004d71;color:#ffffff;text-decoration:none;font-weight:bold;padding:10px 16px;border-radius:4px;">${ctaText}</a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        `.trim();
+      }
+
+      function validate(data) {
+        const errors = {};
+        if (!String(data.headline || "").trim()) errors.headline = "Headline is required.";
+        if (!String(data.ctaText || "").trim()) errors.ctaText = "CTA text is required.";
+        if (!window.BlockCore.isValidHttpUrl(data.imageUrl)) errors.imageUrl = "Image URL must be a valid http(s) URL.";
+        return errors;
+      }
+
+      window.BlockCore.initBlock({
+        fieldIds: ["headline", "bodyText", "ctaText", "imageUrl"],
+        defaults,
+        buildEmailHtml,
+        validate,
+        debounceMs: 250,
+      });
+    </script>
+  </body>
+</html>
