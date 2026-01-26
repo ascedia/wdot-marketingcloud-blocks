@@ -16,6 +16,7 @@
                     <div class="mb-3">
                         <label for="headline" class="form-label">Headline</label>
                         <input type="text" class="form-control" id="headline">
+                        <div class="invalid-feedback" id="headlineError">Headline is required.</div>
                     </div>
                     <div class="mb-3">
                         <label for="bodyText" class="form-label">Body</label>
@@ -24,10 +25,12 @@
                     <div class="mb-3">
                         <label for="ctaText" class="form-label">CTA Text</label>
                         <input type="text" class="form-control" id="ctaText">
+                        <div class="invalid-feedback" id="ctaTextError">CTA text is required.</div>
                     </div>
                     <div class="mb-3">
                         <label for="imageUrl" class="form-label">Image URL</label>
                         <input type="text" class="form-control" id="imageUrl">
+                        <div class="invalid-feedback" id="imageUrlError">Image URL must be a valid http(s) URL.</div>
                     </div>
                     <button type="button" class="btn btn-small btn-secondary" id="resetBtn">Reset</button>
                 </form>
@@ -36,7 +39,7 @@
     </div>
 
     <!-- BlockSDK -->
-    <script src="https://unpkg.com/blocksdk@1.3.0/blocksdk.js"></script>
+    <script src="../assets/dist/blocksdk.js"></script>
 
     <script>
     function inIframe() {
@@ -341,12 +344,57 @@
         };
     }
 
+    function setFieldError(id, message) {
+        const input = document.getElementById(id);
+        const errorEl = document.getElementById(id + "Error");
+        const hasError = !!message;
+        if (input) input.classList.toggle("is-invalid", hasError);
+        if (errorEl) {
+            errorEl.textContent = message || "";
+            errorEl.style.display = hasError ? "block" : "none";
+        }
+    }
+
+    function isValidHttpUrl(value) {
+        try {
+            const url = new URL(String(value || "").trim());
+            return url.protocol === "http:" || url.protocol === "https:";
+        } catch {
+            return false;
+        }
+    }
+
+    function validate(data) {
+        const errors = {};
+        if (!String(data.headline || "").trim()) errors.headline = "Headline is required.";
+        if (!String(data.ctaText || "").trim()) errors.ctaText = "CTA text is required.";
+        if (!isValidHttpUrl(data.imageUrl)) errors.imageUrl = "Image URL must be a valid http(s) URL.";
+        return errors;
+    }
+
+    function applyErrors(errors) {
+        setFieldError("headline", errors.headline);
+        setFieldError("ctaText", errors.ctaText);
+        setFieldError("imageUrl", errors.imageUrl);
+    }
+
+    function debounce(fn, waitMs) {
+        let t;
+        return function (...args) {
+            clearTimeout(t);
+            t = setTimeout(() => fn.apply(this, args), waitMs);
+        };
+    }
+
     function syncToBlock() {
         const data = getFormValues();
+        const errors = validate(data);
+        applyErrors(errors);
         // In preview mode, do not attempt SDK calls
         if (!sdk) return;
 
         sdk.setData(data, function () {});
+        if (Object.keys(errors).length > 0) return;
         sdk.setContent(buildEmailHtml(data), function () {});
     }
 
@@ -366,7 +414,7 @@
     // Update as user types
     ["headline", "bodyText", "ctaText", "imageUrl"].forEach((id) => {
         const el = document.getElementById(id);
-        if (el) el.addEventListener("input", syncToBlock);
+        if (el) el.addEventListener("input", debounce(syncToBlock, 250));
     });
 
     // Reset
@@ -374,6 +422,7 @@
     if (resetBtn) {
         resetBtn.addEventListener("click", () => {
         setFormValues(defaults);
+        applyErrors({});
         if (!sdk) return;
         sdk.setData(defaults);
         sdk.setContent(buildEmailHtml(defaults));
