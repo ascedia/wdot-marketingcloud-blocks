@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Consumer - Fall Color Report Subscribe</title>
-    <link rel="stylesheet" href="../../assets/dist/css/main.min.css" type="text/css" media="all">
+    <title>Consumer - Trail Report Subscribe</title>
+    <link rel="stylesheet" href="../../../assets/dist/css/main.min.css" type="text/css" media="all">
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-          <h2>Fall Color Report Subscribe</h2>
+          <h2>Trail Report Subscribe</h2>
           <div class="mb-3" id="sdkStatus" aria-live="polite"></div>
           <form>
             <div class="mb-3">
@@ -38,14 +38,14 @@
       </div>
     </div>
 
-    <script src="../../assets/dist/js/blocksdk.min.js"></script>
-    <script src="../../assets/dist/js/block-core.js"></script>
+    <script src="../../../assets/dist/js/blocksdk.min.js"></script>
+    <script src="../../../assets/dist/js/block-core.js"></script>
 
     <script>
       const defaults = {
-        headline: "Track Peak Fall Color",
-        bodyText: "Discover the best places to see fall colors with weekly updates on routes, parks, and hidden gems across the state.",
-        ctaText: "Subscribe to the Fall Color Report",
+        headline: "Your Weekly Trail Guide",
+        bodyText: "Get the latest hiking conditions, trail tips, and outdoor inspiration to make the most of every adventure.",
+        ctaText: "Subscribe to Trail Updates",
         imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/a1505f57-09ba-4475-be8d-cb180b223e72.jpg",
       };
 
@@ -55,19 +55,19 @@
         const ctaText = window.BlockCore.escapeHtml(data.ctaText);
         const imageUrl = window.BlockCore.escapeHtml(data.imageUrl);
 
-        return ` %%[ /* Define Onclick Subscribe URL */ SET @OneClickFallColorReportSubscribeURL = CloudPagesURL(5247,
+        return ` %%[ /* Define Onclick Subscribe URL */ SET @OneClickTrailReportSubscribeURL = CloudPagesURL(5247,
                 "subscriberkey", @SubscriberKey, "emailaddr", @EmailAddress, "submitType", "oneclick",
-                "oneclick_action", "Consumer_FallColorReportSubscribe") ]%%
-<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" bgcolor="#EF6F1A" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+                "oneclick_action", "Consumer_TrailReportSubscribe") ]%%
+<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" bgcolor="#6FC21D" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
 
-      <div style="background: #ef6f1a; background-color: #ef6f1a; margin: 0px auto; max-width: 600px">
+      <div style="background: #6fc21d; background-color: #6fc21d; margin: 0px auto; max-width: 600px">
         <table
           align="center"
           border="0"
           cellpadding="0"
           cellspacing="0"
           role="presentation"
-          style="background: #ef6f1a; background-color: #ef6f1a; width: 100%"
+          style="background: #6fc21d; background-color: #6fc21d; width: 100%"
         >
           <tbody>
             <tr>
@@ -169,7 +169,7 @@
                                         <td style="width: 300px" class="mj-full-width-mobile">
                                           <img
                                             alt=""
-                                            src="https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/d0f94dec-c7cc-4009-a271-3af35107e4a9.png"
+                                            src="https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/8286740c-5345-43ab-9bd1-0af611789e6e.png"
                                             style="
                                               border: 0;
                                               display: block;
@@ -203,10 +203,10 @@
                                   >
                                     <tbody>
                                       <tr>
-                                        <td style="width: 85px">
+                                        <td style="width: 78px">
                                           <img
                                             alt=""
-                                            src="https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/078cca04-12a5-43a1-bf95-149e4ae1ee32.png"
+                                            src="https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/cbc36f17-54e6-4a45-9002-ddd4f7f7d29b.png"
                                             style="
                                               border: 0;
                                               display: block;
@@ -216,7 +216,7 @@
                                               width: 100%;
                                               font-size: 14px;
                                             "
-                                            width="85"
+                                            width="78"
                                             height="auto"
                                           />
                                         </td>
@@ -270,7 +270,7 @@
                                     "
                                   >
                                     <a
-                                      href="%%=RedirectTo(@OneClickFallColorReportSubscribeURL)=%%"
+                                      href="%%=RedirectTo(@OneClickTrailReportSubscribeURL)=%%"
                                       style="color: #002a3d !important; text-align: center; font-weight: bold"
                                     >${ctaText}</a>
                                   </div>
