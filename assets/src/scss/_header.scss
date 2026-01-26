@@ -1,0 +1,10 @@
+header.site-header {
+
+    .navbar {
+        .navbar-brand {
+            max-width: 300px;
+            --#{$prefix}navbar-brand-padding-y: 0;
+        }
+    }
+    
+}

@@ -1,0 +1,72 @@
+/*******************************
+  MASTER THEME CSS
+*******************************/
+
+// Core
+@import "bootstrap_variables";
+@import "variables";
+@import "bootstrap";
+@import "fonts";
+@import "backgrounds";
+
+@import "header";
+@import "footer";
+
+
+body {
+	// fixes issue with alignfull
+	overflow-x:hidden;
+  font-optical-sizing: auto;
+  font-variation-settings:
+    "slnt" 0,
+    "wdth" 100,
+    "GRAD" 0,
+    "XOPQ" 96,
+    "XTRA" 468,
+    "YOPQ" 79,
+    "YTAS" 750,
+    "YTDE" -203,
+    "YTFI" 738,
+    "YTLC" 514,
+    "YTUC" 712;
+}
+
+// OVERFLOW DETECTOR show problematic elements
+//* { outline: 1px red solid !important; visibility: visible !important } 
+
+// responsive classes for object-position variations
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+      @each $horizontal in (left, center, right) {
+        @each $vertical in (top, center, bottom) {
+          .object-position#{$infix}-#{$horizontal}-#{$vertical} {
+            object-position: $horizontal $vertical;
+            background-position: $horizontal $vertical;
+          }
+        }
+      }
+  }
+}
+
+.stretched-link-escape {
+  z-index: $stretched-link-z-index + 1;
+  position: relative;
+}
+
+.fs-sm {
+  font-size: $font-size-sm;
+}
+
+.form-check-input.is-valid:not([required]), .was-validated .form-check-input:valid:not([required]) {
+  --#{$prefix}form-valid-border-color: var(--#{$prefix}primary);
+
+  &:checked{
+  --#{$prefix}form-valid-color: var(--#{$prefix}primary);
+  }
+
+  &~.form-check-label{
+    color: inherit;
+  }
+}

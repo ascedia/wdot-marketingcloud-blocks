@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consumer - Snow Report Subscribe</title>
+    <link rel="stylesheet" href="https://ascedia.github.io/wdot-marketingcloud-blocks/assets/dist/main.min.css" type="text/css" media="all">
+  </head>
+  <body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h2>Snow Report Subscribe</h2>
+                <div class="mb-3" id="sdkStatus" aria-live="polite"></div>
+                <form>
+                    <div class="mb-3">
+                        <label for="headline" class="form-label">Headline</label>
+                        <input type="text" class="form-control" id="headline">
+                    </div>
+                    <div class="mb-3">
+                        <label for="bodyText" class="form-label">Body</label>
+                        <textarea class="form-control" id="bodyText" rows="2"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ctaText" class="form-label">CTA Text</label>
+                        <input type="text" class="form-control" id="ctaText">
+                    </div>
+                    <div class="mb-3">
+                        <label for="imageUrl" class="form-label">Image URL</label>
+                        <input type="text" class="form-control" id="imageUrl">
+                    </div>
+                    <button type="button" class="btn btn-small btn-secondary" id="resetBtn">Reset</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- BlockSDK -->
+    <script src="https://unpkg.com/blocksdk@1.3.0/blocksdk.js"></script>
+
+    <script>
+    function inIframe() {
+        try {
+        return window.self !== window.top;
+        } catch (e) {
+        return true; // cross-origin access, assume iframe
+        }
+    }
+
+    const sdkStatusEl = document.getElementById("sdkStatus");
+
+    // BlockSDK may be present even when the editor context is not (preview mode)
+    const hasSdk = !!(window.sfdc && window.sfdc.BlockSDK);
+    const canInitSdk = hasSdk && inIframe();
+
+    // Initialize SDK ONLY inside the Content Builder iframe
+    const sdk = canInitSdk ? new window.sfdc.BlockSDK() : null;
+
+    if (!hasSdk) {
+        if (sdkStatusEl) sdkStatusEl.textContent = "BlockSDK failed to load.";
+    } else if (!sdk) {
+        // This is expected when you open the CloudPage directly
+        if (sdkStatusEl) sdkStatusEl.textContent = "Preview mode: SDK disabled.";
+    }
+
+    // Default data
+    const defaults = {
+        headline: "Stay Ahead of the Snow",
+        bodyText: "Get the latest ski and snowboarding conditions delivered to your inbox every week. Plan your perfect winter getaway with fresh updates straight from the slopes.",
+        ctaText: "Subscribe to the Snow Report",
+        imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/cc6f1813-8721-4b29-96e5-e774525809f0.jpg",
+    };
+
+    function escapeHtml(str) {
+        return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function buildEmailHtml(data) {
+        const headline = escapeHtml(data.headline);
+        const bodyText = escapeHtml(data.bodyText).replace(/\n/g, "<br/>");
+        const ctaText = escapeHtml(data.ctaText);
+        const imageUrl = escapeHtml(data.imageUrl);
+      
+        return ` %%[ SET @OneClickSnowReportSubscribeURL = CloudPagesURL(5247,
+                "subscriberkey", @SubscriberKey, "emailaddr", @EmailAddress, "submitType", "oneclick",
+                "oneclick_action", "Consumer_SnowReportSubscribe") ]%%
+<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" bgcolor="#004D71" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+
+      <div style="background: #004d71; background-color: #004d71; margin: 0px auto; max-width: 600px">
+        <table
+          align="center"
+          border="0"
+          cellpadding="0"
+          cellspacing="0"
+          role="presentation"
+          style="background: #004d71; background-color: #004d71; width: 100%"
+        >
+          <tbody>
+            <tr>
+              <td style="direction: rtl; font-size: 0px; padding: 0; text-align: center">
+                <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><![endif]-->
+               
+                <!--[if mso | IE]><td class="" style="vertical-align:top;width:300px;" ><![endif]-->
+
+                <div
+                  class="mj-column-per-50 mj-outlook-group-fix"
+                  style="
+                    font-size: 0px;
+                    text-align: left;
+                    direction: ltr;
+                    display: inline-block;
+                    vertical-align: top;
+                    width: 100%;
+                  "
+                >
+                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                    <tbody>
+                      <tr>
+                        <td style="vertical-align: top; padding: 0">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
+                            <tbody>
+                              <tr>
+                                <td align="center" style="font-size: 0px; padding: 0; word-break: break-word">
+                                  <table
+                                    border="0"
+                                    cellpadding="0"
+                                    cellspacing="0"
+                                    role="presentation"
+                                    style="border-collapse: collapse; border-spacing: 0px"
+                                    class="mj-full-width-mobile"
+                                  >
+                                    <tbody>
+                                      <tr>
+                                        <td style="width: 300px" class="mj-full-width-mobile">
+                                          <img
+                                            alt=""
+                                            src="${imageUrl}"
+                                            style="
+                                              border: 0;
+                                              display: block;
+                                              outline: none;
+                                              text-decoration: none;
+                                              height: auto;
+                                              width: 100%;
+                                              font-size: 14px;
+                                            "
+                                            width="300"
+                                            height="auto"
+                                          />
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!--[if mso | IE]></td><td class="" style="vertical-align:top;width:300px;" ><![endif]-->
+
+                <div
+                  class="mj-column-per-50 mj-outlook-group-fix"
+                  style="
+                    font-size: 0px;
+                    text-align: left;
+                    direction: ltr;
+                    display: inline-block;
+                    vertical-align: top;
+                    width: 100%;
+                  "
+                >
+                  <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%">
+                    <tbody>
+                      <tr>
+                        <td style="vertical-align: top; padding: 0">
+                          <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
+                            <tbody>
+                              <tr>
+                                <td align="center" style="font-size: 0px; padding: 0; word-break: break-word">
+                                  <table
+                                    border="0"
+                                    cellpadding="0"
+                                    cellspacing="0"
+                                    role="presentation"
+                                    style="border-collapse: collapse; border-spacing: 0px"
+                                    class="mj-full-width-mobile"
+                                  >
+                                    <tbody>
+                                      <tr>
+                                        <td style="width: 300px" class="mj-full-width-mobile">
+                                          <img
+                                            alt=""
+                                            src="https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/09afd3c3-672a-4638-b643-3bbd21673348.png"
+                                            style="
+                                              border: 0;
+                                              display: block;
+                                              outline: none;
+                                              text-decoration: none;
+                                              height: auto;
+                                              width: 100%;
+                                              font-size: 14px;
+                                            "
+                                            width="300"
+                                            height="auto"
+                                          />
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td
+                                  align="center"
+                                  style="font-size: 0px; padding: 26px 26px 10px 26px; word-break: break-word"
+                                >
+                                  <table
+                                    border="0"
+                                    cellpadding="0"
+                                    cellspacing="0"
+                                    role="presentation"
+                                    style="border-collapse: collapse; border-spacing: 0px"
+                                  >
+                                    <tbody>
+                                      <tr>
+                                        <td style="width: 78px">
+                                          <img
+                                            alt=""
+                                            src="https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/a88c53ae-38be-4696-a550-7746066c3702.png"
+                                            style="
+                                              border: 0;
+                                              display: block;
+                                              outline: none;
+                                              text-decoration: none;
+                                              height: auto;
+                                              width: 100%;
+                                              font-size: 14px;
+                                            "
+                                            width="78"
+                                            height="auto"
+                                          />
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td align="center" style="font-size: 0px; padding: 0; word-break: break-word">
+                                  <div
+                                    style="
+                                      font-family: &quot;Source Sans Pro&quot;, Tahoma, Verdana, Segoe, sans-serif;
+                                      font-size: 18px;
+                                      font-weight: bold;
+                                      line-height: 1;
+                                      text-align: center;
+                                      color: #ffffff;
+                                    ">${headline}</div>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td align="center" style="font-size: 0px; padding: 10px 26px; word-break: break-word">
+                                  <div
+                                    style="
+                                      font-family: &quot;Source Sans Pro&quot;, Tahoma, Verdana, Segoe, sans-serif;
+                                      font-size: 14px;
+                                      line-height: 21px;
+                                      text-align: center;
+                                      color: #ffffff;
+                                    "
+                                  >${bodyText}</div>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                <td
+                                  align="center"
+                                  style="font-size: 0px; padding: 10px 26px 26px 26px; word-break: break-word"
+                                >
+                                  <div
+                                    style="
+                                      font-family: &quot;Source Sans Pro&quot;, Tahoma, Verdana, Segoe, sans-serif;
+                                      font-size: 14px;
+                                      line-height: 1;
+                                      text-align: center;
+                                      color: #ffffff;
+                                    "
+                                  >
+                                    <a
+                                      href="%%=RedirectTo(@OneClickSnowReportSubscribeURL)=%%"
+                                      style="color: #ffffff !important; text-align: center; font-weight: bold"
+                                    >${ctaText}</a>
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!--[if mso | IE]></td></tr></table><![endif]-->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!--[if mso | IE]></td></tr></table><![endif]-->
+        `.trim();
+      }
+
+      function setFormValues(data) {
+        document.getElementById("headline").value = data.headline || "";
+        document.getElementById("bodyText").value = data.bodyText || "";
+        document.getElementById("ctaText").value = data.ctaText || "";
+        document.getElementById("imageUrl").value = data.imageUrl || "";
+    }
+
+    function getFormValues() {
+        return {
+        headline: document.getElementById("headline").value,
+        bodyText: document.getElementById("bodyText").value,
+        ctaText: document.getElementById("ctaText").value,
+        imageUrl: document.getElementById("imageUrl").value,
+        };
+    }
+
+    function syncToBlock() {
+        const data = getFormValues();
+        // In preview mode, do not attempt SDK calls
+        if (!sdk) return;
+
+        sdk.setData(data, function () {});
+        sdk.setContent(buildEmailHtml(data), function () {});
+    }
+
+    // Load existing block data when opening the block
+    if (sdk) {
+        sdk.getData((data) => {
+        const merged = { ...defaults, ...(data || {}) };
+        setFormValues(merged);
+        sdk.setData(merged);
+        sdk.setContent(buildEmailHtml(merged));
+        });
+    } else {
+        // Standalone preview/browser: just show defaults
+        setFormValues(defaults);
+    }
+
+    // Update as user types
+    ["headline", "bodyText", "ctaText", "imageUrl"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener("input", syncToBlock);
+    });
+
+    // Reset
+    const resetBtn = document.getElementById("resetBtn");
+    if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+        setFormValues(defaults);
+        if (!sdk) return;
+        sdk.setData(defaults);
+        sdk.setContent(buildEmailHtml(defaults));
+        });
+    }
+    </script>
+  </body>
+</html>

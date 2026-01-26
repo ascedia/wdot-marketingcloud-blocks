@@ -1,0 +1,18 @@
+.text-bg-primary {
+    color: color-contrast($primary);
+    
+    .btn-link{
+        --#{$prefix}btn-color: #{color-contrast($primary)} !important;
+        --#{$prefix}btn-hover-color: #{shift-color(color-contrast($primary), $link-shade-percentage)} !important;
+    }
+
+    a:not(.btn):not(.wp-element-button):not(.text-reset):not(.stretched-link) {
+        @extend .stretched-link-escape;
+        @extend .text-reset;
+        
+        &:hover,&:focus{
+            color: shift-color(color-contrast($primary), $link-shade-percentage) !important;
+        }
+    }
+
+}

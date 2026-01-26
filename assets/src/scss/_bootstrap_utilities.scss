@@ -1,0 +1,54 @@
+//Modify/Add to the utilities api
+
+@use 'sass:list';
+
+// enable responsive classes for border
+$utilities: map-merge(
+  $utilities, (
+    "border": map-merge(
+      map-get($utilities, "border"),
+      ( responsive: true ),
+    ),
+  )
+);
+
+// enable responsive classes for background color
+$utilities: map-merge(
+  $utilities, (
+    "background-color": map-merge(
+      map-get($utilities, "background-color"),
+      ( responsive: true ),
+    ),
+  )
+);
+
+// enable responsive classes for shadow
+$utilities: map-merge(
+  $utilities, (
+    "shadow": map-merge(
+      map-get($utilities, "shadow"),
+      ( responsive: true ),
+    ),
+  )
+);
+
+// create/enable responsive classes for aspect ratio
+$utilities: map-merge(
+  $utilities,
+  (
+    "aspect-ratio": (
+      property: aspect-ratio,
+      responsive: true,
+      values: (
+        "1x1": 1,
+        "4x3": list.slash(4,3),
+        "3x4": list.slash(3,4),
+        "3x2": list.slash(3,2),
+        "2x3": list.slash(2,3),
+        "16x9": list.slash(16,9),
+        "9x16": list.slash(9,16),
+        "21x9": list.slash(21,9)
+      )
+    )
+  )
+);

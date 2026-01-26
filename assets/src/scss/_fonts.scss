@@ -1,0 +1,41 @@
+$base-font-path: "https://www.travelwisconsin.com/fonts";
+
+/*****************************************************************************
+	Grold Rounded Slim	
+*****************************************************************************/
+
+@font-face {
+	font-family: "Grold Rounded Slim";
+	font-style: normal;
+	font-weight: 300;
+	font-display: swap;
+	src:url($base-font-path + "/groldrounded/groldroundedslim-semilight-webfont.woff2") format("woff2");
+}
+@font-face {
+	font-family: "Grold Rounded Slim";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src:url($base-font-path + "/groldrounded/groldroundedslim-regular-webfont.woff2") format("woff2");
+}
+@font-face {
+	font-family: "Grold Rounded Slim";
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src:url($base-font-path + "/groldrounded/groldroundedslim-medium-webfont.woff2") format("woff2");
+}
+@font-face {
+	font-family: "Grold Rounded Slim";
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src:url($base-font-path + "/groldrounded/groldroundedslim-bold-webfont.woff2") format("woff2");
+}
+@font-face {
+	font-family: "Grold Rounded Slim";
+	font-style: normal;
+	font-weight: 800;
+	font-display: swap;
+	src:url($base-font-path + "/groldrounded/groldroundedslim-extrabold-webfont.woff2") format("woff2");
+}
