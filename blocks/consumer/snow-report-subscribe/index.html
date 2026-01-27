@@ -59,12 +59,10 @@
         </div>
     </div>
 
-    <!-- BlockSDK -->
     <script src="../../../assets/dist/js/blocksdk.min.js"></script>
     <script src="../../../assets/dist/js/block-core.js"></script>
 
     <script>
-    // Default data
     const defaults = {
         headline: "Stay Ahead of the Snow",
         bodyText: "Get the latest ski and snowboarding conditions delivered to your inbox every week. Plan your perfect winter getaway with fresh updates straight from the slopes.",
@@ -82,7 +80,7 @@
         const marginTop = window.BlockCore.escapeHtml(data.marginTop);
         const marginBottom = window.BlockCore.escapeHtml(data.marginBottom);
       
-        return ` %%[ SET @OneClickSnowReportSubscribeURL = CloudPagesURL(5247,
+        return ` %%[ /* Define Onclick Subscribe URL */ SET @OneClickSnowReportSubscribeURL = CloudPagesURL(5247,
                 "subscriberkey", @SubscriberKey, "emailaddr", @EmailAddress, "submitType", "oneclick",
                 "oneclick_action", "Consumer_SnowReportSubscribe") ]%%
 <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" bgcolor="#004D71" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;padding: ${marginTop}px 0 ${marginBottom}px 0;"><![endif]-->
