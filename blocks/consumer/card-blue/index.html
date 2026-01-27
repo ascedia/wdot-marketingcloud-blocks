@@ -10,34 +10,54 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-          <h2>Card - Blue</h2>
           <div class="mb-3" id="sdkStatus" aria-live="polite"></div>
           <form>
-            <div class="mb-3">
-              <label for="headline" class="form-label">Headline</label>
-              <input type="text" class="form-control" id="headline">
-              <div class="invalid-feedback" id="headlineError">Headline is required.</div>
-            </div>
-            <div class="mb-3">
-              <label for="bodyText" class="form-label">Body</label>
-              <textarea class="form-control" id="bodyText" rows="4"></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="ctaText" class="form-label">CTA Text</label>
-              <input type="text" class="form-control" id="ctaText">
-              <div class="invalid-feedback" id="ctaTextError">CTA text is required.</div>
-            </div>
-            <div class="mb-3">
-              <label for="ctaLink" class="form-label">CTA Link</label>
-              <input type="text" class="form-control" id="ctaLink">
-              <div class="invalid-feedback" id="ctaLinkError">CTA link must be a valid http(s) URL.</div>
-            </div>
-            <div class="mb-3">
-              <label for="imageUrl" class="form-label">Image URL</label>
-              <input type="text" class="form-control" id="imageUrl">
-              <div class="invalid-feedback" id="imageUrlError">Image URL must be a valid http(s) URL.</div>
-            </div>
-            <button type="button" class="btn btn-small btn-outline-dark" id="resetBtn">Reset</button>
+            <fieldset class="border p-2">
+              <legend>Content</legend>
+              <div class="mb-3">
+                <label for="headline" class="form-label">Headline</label>
+                <input type="text" class="form-control" id="headline">
+                <div class="invalid-feedback" id="headlineError">Headline is required.</div>
+              </div>
+              <div class="mb-3">
+                <label for="bodyText" class="form-label">Body</label>
+                <textarea class="form-control" id="bodyText" rows="4"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="ctaText" class="form-label">CTA Text</label>
+                <input type="text" class="form-control" id="ctaText">
+                <div class="invalid-feedback" id="ctaTextError">CTA text is required.</div>
+              </div>
+              <div class="mb-3">
+                <label for="ctaLink" class="form-label">CTA Link</label>
+                <input type="text" class="form-control" id="ctaLink">
+                <div class="invalid-feedback" id="ctaLinkError">CTA link must be a valid http(s) URL.</div>
+              </div>
+              <div class="mb-3">
+                <label for="imageUrl" class="form-label">Image URL</label>
+                <input type="text" class="form-control" id="imageUrl">
+                <div class="invalid-feedback" id="imageUrlError">Image URL must be a valid http(s) URL.</div>
+              </div>
+            </fieldset>
+            <fieldset class="border p-2 mt-4">
+              <legend>Configuration</legend>
+              <div class="row g-3">
+              <div class="col-6">
+                <label for="marginTop" class="form-label">Margin Top</label>
+                <div class="input-group">
+                  <input type="number" class="form-control" id="marginTop">
+                  <span class="input-group-text">px</span>
+                </div>
+              </div>
+              <div class="col-6">
+                <label for="marginBottom" class="form-label">Margin Bottom</label>
+                <div class="input-group">
+                  <input type="number" class="form-control" id="marginBottom">
+                  <span class="input-group-text">px</span>
+                </div>
+              </div>
+            </fieldset>
+            <button type="button" class="btn btn-small btn-outline-dark mt-4" id="resetBtn">Reset</button>
           </form>
         </div>
       </div>
@@ -53,6 +73,8 @@
         ctaText: "Lorem ipsum dolor",
         ctaLink: "https://www.travelwisconsin.com",
         imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/7e0b05cc-c1e4-4e06-801a-f5855afa1eb6.jpg",
+        marginTop: "15",
+        marginBottom: "15",
       };
 
       function buildEmailHtml(data) {
@@ -61,6 +83,8 @@
         const ctaText = window.BlockCore.escapeHtml(data.ctaText);
         const ctaLink = window.BlockCore.escapeHtml(data.ctaLink);
         const imageUrl = window.BlockCore.escapeHtml(data.imageUrl);
+        const marginTop = window.BlockCore.escapeHtml(data.marginTop);
+        const marginBottom = window.BlockCore.escapeHtml(data.marginBottom);
 
         return `<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
 
@@ -68,7 +92,7 @@
         <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width: 100%">
           <tbody>
             <tr>
-              <td style="direction: ltr; font-size: 0px; padding: 15px; text-align: center">
+              <td style="direction: ltr; font-size: 0px; padding: ${marginTop}px 15px ${marginBottom}px 15px; text-align: center">
                 <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:570px;" width="570" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
 
                 <!--[if !mso | !IE]><!-->
@@ -474,7 +498,7 @@
       }
 
       window.BlockCore.initBlock({
-        fieldIds: ["headline", "bodyText", "ctaText", "ctaLink", "imageUrl"],
+        fieldIds: ["headline", "bodyText", "ctaText", "ctaLink", "imageUrl", "marginTop", "marginBottom"],
         defaults,
         buildEmailHtml,
         validate,
