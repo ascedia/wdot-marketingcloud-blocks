@@ -41,14 +41,14 @@
                             <div class="col-6">
                                 <label for="marginTop" class="form-label">Margin Top</label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control" id="marginTop">
+                                    <input type="number" class="form-control" id="marginTop" min="0" max="200">
                                     <span class="input-group-text">px</span>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <label for="marginBottom" class="form-label">Margin Bottom</label>
                                 <div class="input-group">
-                                    <input type="number" class="form-control" id="marginBottom">
+                                    <input type="number" class="form-control" id="marginBottom" min="0" max="200">
                                     <span class="input-group-text">px</span>
                                 </div>
                             </div>
@@ -71,8 +71,8 @@
         bodyText: "Get the latest ski and snowboarding conditions delivered to your inbox every week. Plan your perfect winter getaway with fresh updates straight from the slopes.",
         ctaText: "Subscribe to the Snow Report",
         imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/cc6f1813-8721-4b29-96e5-e774525809f0.jpg",
-        marginTop: "0",
-        marginBottom: "0",
+        marginTop: "15",
+        marginBottom: "15",
     };
 
     function buildEmailHtml(data) {
