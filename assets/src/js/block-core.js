@@ -63,11 +63,11 @@
     }, {});
   }
 
-  function initSdk(statusElId) {
+  function initSdk(statusElId, sdkConfig) {
     const statusEl = document.getElementById(statusElId);
     const hasSdk = !!(window.sfdc && window.sfdc.BlockSDK);
     const canInitSdk = hasSdk && inIframe();
-    const sdk = canInitSdk ? new window.sfdc.BlockSDK() : null;
+    const sdk = canInitSdk ? new window.sfdc.BlockSDK(sdkConfig) : null;
 
     if (!hasSdk) {
       if (statusEl) statusEl.textContent = "BlockSDK failed to load.";
@@ -90,9 +90,10 @@
       statusElId = "sdkStatus",
       resetBtnId = "resetBtn",
       showErrors = true,
+      sdkConfig,
     } = config;
 
-    const sdk = initSdk(statusElId);
+    const sdk = initSdk(statusElId, sdkConfig);
 
     function syncToBlock() {
       const data = getFormValues(fieldIds);
