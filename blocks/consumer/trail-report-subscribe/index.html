@@ -13,26 +13,48 @@
           <h2>Trail Report Subscribe</h2>
           <div class="mb-3" id="sdkStatus" aria-live="polite"></div>
           <form>
-            <div class="mb-3">
-              <label for="headline" class="form-label">Headline</label>
-              <input type="text" class="form-control" id="headline">
-              <div class="invalid-feedback" id="headlineError">Headline is required.</div>
-            </div>
-            <div class="mb-3">
-              <label for="bodyText" class="form-label">Body</label>
-              <textarea class="form-control" id="bodyText" rows="2"></textarea>
-            </div>
-            <div class="mb-3">
-              <label for="ctaText" class="form-label">CTA Text</label>
-              <input type="text" class="form-control" id="ctaText">
-              <div class="invalid-feedback" id="ctaTextError">CTA text is required.</div>
-            </div>
-            <div class="mb-3">
-              <label for="imageUrl" class="form-label">Image URL</label>
-              <input type="text" class="form-control" id="imageUrl">
-              <div class="invalid-feedback" id="imageUrlError">Image URL must be a valid http(s) URL.</div>
-            </div>
-            <button type="button" class="btn btn-small btn-secondary" id="resetBtn">Reset</button>
+            <fieldset class="border p-2">
+              <legend>Content</legend>
+              <div class="mb-3">
+                <label for="headline" class="form-label">Headline</label>
+                <input type="text" class="form-control" id="headline">
+                <div class="invalid-feedback" id="headlineError">Headline is required.</div>
+              </div>
+              <div class="mb-3">
+                <label for="bodyText" class="form-label">Body</label>
+                <textarea class="form-control" id="bodyText" rows="2"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="ctaText" class="form-label">CTA Text</label>
+                <input type="text" class="form-control" id="ctaText">
+                <div class="invalid-feedback" id="ctaTextError">CTA text is required.</div>
+              </div>
+              <div class="mb-3">
+                <label for="imageUrl" class="form-label">Image URL</label>
+                <input type="text" class="form-control" id="imageUrl">
+                <div class="invalid-feedback" id="imageUrlError">Image URL must be a valid http(s) URL.</div>
+              </div>
+            </fieldset>
+            <fieldset class="border p-2 mt-4">
+              <legend>Configuration</legend>
+              <div class="row g-3">
+                <div class="col-6">
+                  <label for="marginTop" class="form-label">Margin Top</label>
+                  <div class="input-group">
+                    <input type="number" class="form-control" id="marginTop">
+                    <span class="input-group-text">px</span>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <label for="marginBottom" class="form-label">Margin Bottom</label>
+                  <div class="input-group">
+                    <input type="number" class="form-control" id="marginBottom">
+                    <span class="input-group-text">px</span>
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <button type="button" class="btn btn-small btn-outline-dark mt-4" id="resetBtn">Reset</button>
           </form>
         </div>
       </div>
@@ -47,6 +69,8 @@
         bodyText: "Get the latest hiking conditions, trail tips, and outdoor inspiration to make the most of every adventure.",
         ctaText: "Subscribe to Trail Updates",
         imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/a1505f57-09ba-4475-be8d-cb180b223e72.jpg",
+        marginTop: "0",
+        marginBottom: "0",
       };
 
       function buildEmailHtml(data) {
@@ -54,13 +78,15 @@
         const bodyText = window.BlockCore.escapeHtml(data.bodyText).replace(/\n/g, "<br/>");
         const ctaText = window.BlockCore.escapeHtml(data.ctaText);
         const imageUrl = window.BlockCore.escapeHtml(data.imageUrl);
+        const marginTop = window.BlockCore.escapeHtml(data.marginTop);
+        const marginBottom = window.BlockCore.escapeHtml(data.marginBottom);
 
         return ` %%[ /* Define Onclick Subscribe URL */ SET @OneClickTrailReportSubscribeURL = CloudPagesURL(5247,
                 "subscriberkey", @SubscriberKey, "emailaddr", @EmailAddress, "submitType", "oneclick",
                 "oneclick_action", "Consumer_TrailReportSubscribe") ]%%
-<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" bgcolor="#6FC21D" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" bgcolor="#004D71" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;padding: ${marginTop}px 0 ${marginBottom}px 0;"><![endif]-->
 
-      <div style="background: #6fc21d; background-color: #6fc21d; margin: 0px auto; max-width: 600px">
+      <div style="background: #004d71; background-color: #004d71; margin: ${marginTop}px auto ${marginBottom}px auto; max-width: 600px">
         <table
           align="center"
           border="0"
@@ -71,7 +97,7 @@
         >
           <tbody>
             <tr>
-              <td style="direction: rtl; font-size: 0px; padding: 0; text-align: center">
+              <td style="direction: rtl; font-size: 0px; padding: ${marginTop}px 0 ${marginBottom}px 0; text-align: center">
                 <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><![endif]-->
                
                 <!--[if mso | IE]><td class="" style="vertical-align:top;width:300px;" ><![endif]-->
@@ -304,7 +330,7 @@
       }
 
       window.BlockCore.initBlock({
-        fieldIds: ["headline", "bodyText", "ctaText", "imageUrl"],
+        fieldIds: ["headline", "bodyText", "ctaText", "imageUrl", "marginTop", "marginBottom"],
         defaults,
         buildEmailHtml,
         validate,
