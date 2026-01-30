@@ -61,6 +61,20 @@
                     </div>
                 </div>
                 <div class="col-6">
+                    <label for="marginLeft" class="form-label">Margin Left</label>
+                    <div class="input-group">
+                    <input type="number" class="form-control" id="marginLeft" min="0" max="200">
+                    <span class="input-group-text">px</span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="marginRight" class="form-label">Margin Right</label>
+                    <div class="input-group">
+                    <input type="number" class="form-control" id="marginRight" min="0" max="200">
+                    <span class="input-group-text">px</span>
+                    </div>
+                </div>
+                <div class="col-6">
                     <label for="imagePosition" class="form-label">Image Position</label>
                     <select class="form-select" id="imagePosition">
                         <option value="ltr">Left</option>
@@ -88,6 +102,8 @@
         imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/91fa7e18-1f11-4af7-ab98-8c976eb34644.jpg",
         marginTop: "15",
         marginBottom: "15",
+        marginLeft: "15",
+        marginRight: "15",
         imagePosition: "ltr"
       };
 
@@ -100,6 +116,8 @@
         const imageUrl = window.BlockCore.escapeHtml(data.imageUrl);
         const marginTop = window.BlockCore.escapeHtml(data.marginTop);
         const marginBottom = window.BlockCore.escapeHtml(data.marginBottom);
+        const marginLeft = window.BlockCore.escapeHtml(data.marginLeft);
+        const marginRight = window.BlockCore.escapeHtml(data.marginRight);
         const imagePosition = window.BlockCore.escapeHtml(data.imagePosition); 
         
         const contentPadding = (imagePosition == 'ltr') ? '0 0 0 16px' : '0 16px 0 0';
@@ -109,7 +127,7 @@
             <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
                 <tbody>
                     <tr>
-                        <td style="direction:ltr;font-size:0px;padding:${marginTop}px 0 ${marginBottom}px 0;text-align:center;">
+                        <td style="direction:ltr;font-size:0px;padding:${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px;text-align:center;">
                             <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
                             <div style="margin:0px auto;max-width:600px;">
                                 <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
@@ -232,7 +250,7 @@
       }
 
       window.BlockCore.initBlock({
-        fieldIds: ["headline", "subheadline", "bodyText", "ctaText", "ctaLink", "imageUrl", "marginTop", "marginBottom","imagePosition"],
+        fieldIds: ["headline", "subheadline", "bodyText", "ctaText", "ctaLink", "imageUrl", "marginTop", "marginBottom", "marginLeft", "marginRight", "imagePosition"],
         defaults,
         buildEmailHtml,
         validate,
