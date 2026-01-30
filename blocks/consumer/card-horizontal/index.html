@@ -46,26 +46,27 @@
             <fieldset class="border p-2 mt-4">
               <legend>Configuration</legend>
               <div class="row g-3">
-              <div class="col-6">
-                <label for="marginTop" class="form-label">Margin Top</label>
-                <div class="input-group">
-                  <input type="number" class="form-control" id="marginTop" min="0" max="200">
-                  <span class="input-group-text">px</span>
+                <div class="col-6">
+                    <label for="marginTop" class="form-label">Margin Top</label>
+                    <div class="input-group">
+                    <input type="number" class="form-control" id="marginTop" min="0" max="200">
+                    <span class="input-group-text">px</span>
+                    </div>
                 </div>
-              </div>
-              <div class="col-6">
-                <label for="marginBottom" class="form-label">Margin Bottom</label>
-                <div class="input-group">
-                  <input type="number" class="form-control" id="marginBottom" min="0" max="200">
-                  <span class="input-group-text">px</span>
+                <div class="col-6">
+                    <label for="marginBottom" class="form-label">Margin Bottom</label>
+                    <div class="input-group">
+                    <input type="number" class="form-control" id="marginBottom" min="0" max="200">
+                    <span class="input-group-text">px</span>
+                    </div>
                 </div>
-              </div>
-              <div class="col-6">
-                <label for="imagePosition" class="form-label">Image Position</label>
-                <select class="form-select" id="imagePosition">
-                    <option value="ltr">Left</option>
-                    <option value="rtl">Right</option>
-                </select>
+                <div class="col-6">
+                    <label for="imagePosition" class="form-label">Image Position</label>
+                    <select class="form-select" id="imagePosition">
+                        <option value="ltr">Left</option>
+                        <option value="rtl">Right</option>
+                    </select>
+                </div>
               </div>
             </fieldset>
             <button type="button" class="btn btn-small btn-outline-dark mt-4" id="resetBtn">Reset</button>
@@ -84,7 +85,7 @@
         bodyText: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.",
         ctaText: "Lorem ipsum dolor",
         ctaLink: "https://www.travelwisconsin.com",
-        imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/a1505f57-09ba-4475-be8d-cb180b223e72.jpg",
+        imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/91fa7e18-1f11-4af7-ab98-8c976eb34644.jpg",
         marginTop: "15",
         marginBottom: "15",
         imagePosition: "ltr"
@@ -99,14 +100,16 @@
         const imageUrl = window.BlockCore.escapeHtml(data.imageUrl);
         const marginTop = window.BlockCore.escapeHtml(data.marginTop);
         const marginBottom = window.BlockCore.escapeHtml(data.marginBottom);
-        const imagePosition = window.BlockCore.escapeHtml(data.imagePosition);  
+        const imagePosition = window.BlockCore.escapeHtml(data.imagePosition); 
+        
+        const contentPadding = (imagePosition == 'ltr') ? '0 0 0 16px' : '0 16px 0 0';
 
         return `<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
         <div style="margin:0px auto;max-width:600px;">
             <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
                 <tbody>
                     <tr>
-                        <td style="direction:ltr;font-size:0px;padding:15px 0 15px 0;text-align:center;">
+                        <td style="direction:ltr;font-size:0px;padding:${marginTop}px 0 ${marginBottom}px 0;text-align:center;">
                             <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
                             <div style="margin:0px auto;max-width:600px;">
                                 <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
@@ -162,7 +165,7 @@
                                                         role="presentation" width="100%">
                                                         <tbody>
                                                             <tr>
-                                                                <td style="vertical-align:top;padding:0 0 0 16px;">
+                                                                <td style="vertical-align:top;padding:${contentPadding}">
                                                                     <table border="0" cellpadding="0" cellspacing="0"
                                                                         role="presentation" width="100%">
                                                                         <tbody>
