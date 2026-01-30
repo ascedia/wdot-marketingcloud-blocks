@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consumer - Headline</title>
+    <link rel="stylesheet" href="../../../assets/dist/css/main.min.css" type="text/css" media="all">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="mb-3" id="sdkStatus" aria-live="polite"></div>
+          <form>
+            <fieldset class="border p-2">
+              <legend>Content</legend>
+              <div class="mb-3">
+                <label for="headline" class="form-label">Headline</label>
+                <input type="text" class="form-control" id="headline">
+                <div class="invalid-feedback" id="headlineError">Headline is required.</div>
+              </div>
+            </fieldset>
+            <fieldset class="border p-2 mt-4">
+              <legend>Configuration</legend>
+              <div class="row g-3">
+                <div class="col-6">
+                    <label for="marginTop" class="form-label">Margin Top</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="marginTop" min="0" max="200">
+                        <span class="input-group-text">px</span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="marginBottom" class="form-label">Margin Bottom</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="marginBottom" min="0" max="200">
+                        <span class="input-group-text">px</span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="marginLeft" class="form-label">Margin Left</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="marginLeft" min="0" max="200">
+                        <span class="input-group-text">px</span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="marginRight" class="form-label">Margin Right</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="marginRight" min="0" max="200">
+                        <span class="input-group-text">px</span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="fontColor" class="form-label">Font Color</label>
+                    <input type="color" class="form-control" id="fontColor">
+                </div>
+                <div class="col-6">
+                    <label for="fontSize" class="form-label">Font Size</label>
+                    <div class="input-group">
+                        <input type="number" class="form-control" id="fontSize" min="12" max="60">
+                        <span class="input-group-text">px</span>
+                    </div>
+                </div>
+              </div>
+            </fieldset>
+            <button type="button" class="btn btn-small btn-outline-dark mt-4" id="resetBtn">Reset</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../../assets/dist/js/blocksdk.min.js"></script>
+    <script src="../../../assets/dist/js/block-core.js"></script>
+
+    <script>
+      const defaults = {
+        headline: "Lorem ipsum dolor sit amet",       
+        marginTop: "15",
+        marginBottom: "15",
+        marginLeft: "15",
+        marginRight: "15",
+        fontColor: "#002A3D",
+        fontSize: "28",
+      };
+
+      function buildEmailHtml(data) {
+        const headline = window.BlockCore.escapeHtml(data.headline);
+        const marginTop = window.BlockCore.escapeHtml(data.marginTop);
+        const marginBottom = window.BlockCore.escapeHtml(data.marginBottom);
+        const marginLeft = window.BlockCore.escapeHtml(data.marginLeft);
+        const marginRight = window.BlockCore.escapeHtml(data.marginRight);
+        const fontSize = window.BlockCore.escapeHtml(data.fontSize);
+        const fontColor = window.BlockCore.escapeHtml(data.fontColor);
+
+        return `<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+        <div style="margin:0px auto;max-width:600px;">
+            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+                <tbody>
+                    <tr>
+                        <td style="direction:ltr;font-size:0px;padding:${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px;text-align:center;">
+                            <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
+                            <div style="margin:0px auto;max-width:600px;">
+                                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                                    style="width:100%;">
+                                    <tbody>
+                                        <tr>
+                                            <td style="direction:ltr;font-size:0px;padding:0;text-align:center;">
+                                                <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" style="vertical-align:top;width:600px;" ><![endif]-->
+                                                <div class="mj-column-per-100 mj-outlook-group-fix"
+                                                    style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                                    <table border="0" cellpadding="0" cellspacing="0"
+                                                        role="presentation" width="100%">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td style="vertical-align:top;padding:0;">
+                                                                    <table border="0" cellpadding="0" cellspacing="0"
+                                                                        role="presentation" width="100%">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td align="center"
+                                                                                    style="font-size:0px;padding:0;word-break:break-word;">
+                                                                                    <div style="font-family:'Source Sans Pro', Tahoma, Verdana, Segoe, sans-serif;;font-size:${fontSize}px;font-weight:bold;line-height:1;text-align:center;color:${fontColor};">${headline}</div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div><!--[if mso | IE]></td></tr></table><![endif]-->
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div><!--[if mso | IE]></td></tr></table></td></tr></table><![endif]-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><!--[if mso | IE]></td></tr></table><![endif]-->`.trim();
+      }
+
+      function validate(data) {
+        const errors = {};
+        if (!String(data.headline || "").trim()) errors.headline = "Headline is required.";        
+        return errors;
+      }
+
+      window.BlockCore.initBlock({
+        fieldIds: ["headline", "marginTop", "marginBottom", "marginLeft", "marginRight", "fontColor", "fontSize"],
+        defaults,
+        buildEmailHtml,
+        validate,
+        debounceMs: 250,
+      });
+    </script>
+  </body>
+</html>
