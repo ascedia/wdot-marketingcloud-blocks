@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consumer - Snow Report Header</title>
+    <link rel="stylesheet" href="../../../assets/dist/css/main.min.css" type="text/css" media="all" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="mb-3" id="sdkStatus" aria-live="polite"></div>
+          <form>
+            <fieldset class="border p-2">
+              <legend>Header content</legend>
+              <div class="mb-3">
+                <label for="imageUrl" class="form-label">Hero Image URL</label>
+                <input type="url" class="form-control" id="imageUrl" />
+                <div class="invalid-feedback" id="imageUrlError">Hero image URL must be a valid http(s) URL.</div>
+              </div>
+              <div class="mb-3">
+                <label for="imageAlt" class="form-label">Hero Image Alt Text</label>
+                <input type="text" class="form-control" id="imageAlt" />
+                <div class="invalid-feedback" id="imageAltError">Hero image alt text is required.</div>
+              </div>
+              <div class="mb-3">
+                <label for="headline" class="form-label">Headline</label>
+                <input type="text" class="form-control" id="headline" />
+                <div class="invalid-feedback" id="headlineError">Headline is required.</div>
+              </div>
+              <div class="mb-3 mb-0">
+                <label for="bodyText" class="form-label">Body</label>
+                <textarea class="form-control" id="bodyText" rows="3"></textarea>
+                <div class="invalid-feedback" id="bodyTextError">Body text is required.</div>
+              </div>
+            </fieldset>
+
+            <fieldset class="border p-2 mt-4">
+              <legend>Feature cards</legend>
+              <div class="row g-3">
+                <div class="col-12"><strong>Card 1</strong></div>
+                <div class="col-md-6"><label for="card_1_imageUrl" class="form-label">Image URL</label><input type="url" class="form-control" id="card_1_imageUrl" /><div class="invalid-feedback" id="card_1_imageUrlError">Enter a valid http(s) URL.</div></div>
+                <div class="col-md-6"><label for="card_1_imageAlt" class="form-label">Image Alt Text</label><input type="text" class="form-control" id="card_1_imageAlt" /><div class="invalid-feedback" id="card_1_imageAltError">Image alt text is required.</div></div>
+                <div class="col-md-6"><label for="card_1_ctaText" class="form-label">Button Text</label><input type="text" class="form-control" id="card_1_ctaText" /><div class="invalid-feedback" id="card_1_ctaTextError">Button text is required.</div></div>
+                <div class="col-md-6"><label for="card_1_ctaLink" class="form-label">Button Link</label><input type="url" class="form-control" id="card_1_ctaLink" /><div class="invalid-feedback" id="card_1_ctaLinkError">Enter a valid http(s) URL.</div></div>
+                <div class="col-12"><strong>Card 2</strong></div>
+                <div class="col-md-6"><label for="card_2_imageUrl" class="form-label">Image URL</label><input type="url" class="form-control" id="card_2_imageUrl" /><div class="invalid-feedback" id="card_2_imageUrlError">Enter a valid http(s) URL.</div></div>
+                <div class="col-md-6"><label for="card_2_imageAlt" class="form-label">Image Alt Text</label><input type="text" class="form-control" id="card_2_imageAlt" /><div class="invalid-feedback" id="card_2_imageAltError">Image alt text is required.</div></div>
+                <div class="col-md-6"><label for="card_2_ctaText" class="form-label">Button Text</label><input type="text" class="form-control" id="card_2_ctaText" /><div class="invalid-feedback" id="card_2_ctaTextError">Button text is required.</div></div>
+                <div class="col-md-6"><label for="card_2_ctaLink" class="form-label">Button Link</label><input type="url" class="form-control" id="card_2_ctaLink" /><div class="invalid-feedback" id="card_2_ctaLinkError">Enter a valid http(s) URL.</div></div>
+                <div class="col-12"><strong>Card 3</strong></div>
+                <div class="col-md-6"><label for="card_3_imageUrl" class="form-label">Image URL</label><input type="url" class="form-control" id="card_3_imageUrl" /><div class="invalid-feedback" id="card_3_imageUrlError">Enter a valid http(s) URL.</div></div>
+                <div class="col-md-6"><label for="card_3_imageAlt" class="form-label">Image Alt Text</label><input type="text" class="form-control" id="card_3_imageAlt" /><div class="invalid-feedback" id="card_3_imageAltError">Image alt text is required.</div></div>
+                <div class="col-md-6"><label for="card_3_ctaText" class="form-label">Button Text</label><input type="text" class="form-control" id="card_3_ctaText" /><div class="invalid-feedback" id="card_3_ctaTextError">Button text is required.</div></div>
+                <div class="col-md-6"><label for="card_3_ctaLink" class="form-label">Button Link</label><input type="url" class="form-control" id="card_3_ctaLink" /><div class="invalid-feedback" id="card_3_ctaLinkError">Enter a valid http(s) URL.</div></div>
+              </div>
+            </fieldset>
+
+            <fieldset class="border p-2 mt-4">
+              <legend>Configuration</legend>
+              <div class="row g-3">
+                <div class="col-6"><label for="marginTop" class="form-label">Margin Top</label><div class="input-group"><input type="number" class="form-control" id="marginTop" min="0" max="200" /><span class="input-group-text">px</span></div></div>
+                <div class="col-6"><label for="marginBottom" class="form-label">Margin Bottom</label><div class="input-group"><input type="number" class="form-control" id="marginBottom" min="0" max="200" /><span class="input-group-text">px</span></div></div>
+              </div>
+            </fieldset>
+            <button type="button" class="btn btn-small btn-outline-dark mt-4" id="resetBtn">Reset</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../../assets/dist/js/blocksdk.min.js"></script>
+    <script src="../../../assets/dist/js/block-core.js"></script>
+    <script>
+      const defaults = {
+        imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/91fa7e18-1f11-4af7-ab98-8c976eb34644.jpg",
+        imageAlt: "Wisconsin Snow Report",
+        headline: "Wisconsin Snow Report",
+        bodyText: "Find the latest snow conditions and plan your next Wisconsin winter adventure.",
+        card_1_imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/a1505f57-09ba-4475-be8d-cb180b223e72.jpg",
+        card_1_imageAlt: "Snowmobiling Conditions in Wisconsin",
+        card_1_ctaText: "Snowmobile",
+        card_1_ctaLink: "https://www.travelwisconsin.com/snow-report?&type=snowmobile",
+        card_2_imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/a1505f57-09ba-4475-be8d-cb180b223e72.jpg",
+        card_2_imageAlt: "Downhill Conditions in Wisconsin",
+        card_2_ctaText: "Downhill",
+        card_2_ctaLink: "https://www.travelwisconsin.com/snow-report?&type=downhill",
+        card_3_imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/a1505f57-09ba-4475-be8d-cb180b223e72.jpg",
+        card_3_imageAlt: "Cross Country Skiing Conditions in Wisconsin",
+        card_3_ctaText: "Cross Country",
+        card_3_ctaLink: "https://www.travelwisconsin.com/snow-report?&type=crosscountry",
+        marginTop: "15",
+        marginBottom: "15",
+      };
+
+      function buildEmailHtml(data) {
+        const imageUrl = window.BlockCore.escapeHtml(data.imageUrl);
+        const imageAlt = window.BlockCore.escapeHtml(data.imageAlt);
+        const headline = window.BlockCore.escapeHtml(data.headline);
+        const bodyText = window.BlockCore.escapeHtml(data.bodyText).replace(/\n/g, "<br/>");
+        const card_1_imageUrl = window.BlockCore.escapeHtml(data.card_1_imageUrl);
+        const card_1_imageAlt = window.BlockCore.escapeHtml(data.card_1_imageAlt);
+        const card_1_ctaText = window.BlockCore.escapeHtml(data.card_1_ctaText);
+        const card_1_ctaLink = window.BlockCore.escapeHtml(data.card_1_ctaLink);
+        const card_2_imageUrl = window.BlockCore.escapeHtml(data.card_2_imageUrl);
+        const card_2_imageAlt = window.BlockCore.escapeHtml(data.card_2_imageAlt);
+        const card_2_ctaText = window.BlockCore.escapeHtml(data.card_2_ctaText);
+        const card_2_ctaLink = window.BlockCore.escapeHtml(data.card_2_ctaLink);
+        const card_3_imageUrl = window.BlockCore.escapeHtml(data.card_3_imageUrl);
+        const card_3_imageAlt = window.BlockCore.escapeHtml(data.card_3_imageAlt);
+        const card_3_ctaText = window.BlockCore.escapeHtml(data.card_3_ctaText);
+        const card_3_ctaLink = window.BlockCore.escapeHtml(data.card_3_ctaLink);
+        const marginTop = window.BlockCore.escapeHtml(data.marginTop);
+        const marginBottom = window.BlockCore.escapeHtml(data.marginBottom);
+
+        return `<style type="text/css">
+.fall-color-report-header-button a,.fall-color-report-header-button span{white-space:nowrap!important}@media only screen and (min-width:480px){.fall-color-report-header-card{width:170px!important;max-width:170px!important}}</style><!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--> <div style="margin:0 auto;max-width:600px"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%"> <tbody> <tr> <td style="direction:ltr;font-size:0;padding:${marginTop}px 0 ${marginBottom}px 0;text-align:center"> 
+<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--> <div style="margin:0 auto;max-width:600px"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%"> <tbody> <tr> <td style="direction:ltr;font-size:0;padding:0 15px;text-align:center"> 
+<!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:570px;" width="570" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--> <div style="margin:0 auto;border-radius:12px 12px 0 0;max-width:570px"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;border-radius:12px 12px 0 0"> <tbody> <tr> <td style="direction:ltr;font-size:0;padding:0;text-align:center"> <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:570px;" ><![endif]--> <div 
+class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top" width="100%"> <tbody> <tr> <td align="center" style="font-size:0;padding:0;word-break:break-word"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0" class="mj-full-width-mobile"> <tbody> <tr> <td style="width:570px" class="mj-full-width-mobile"> <img alt="Wisconsin fall-color Report" src="https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/f949614a-0509-4dde-82bc-639915a31cfc.jpg" 
+style="border:0;border-radius:16px 16px 0 0;display:block;outline:0;text-decoration:none;height:auto;width:100%;font-size:14px" width="570" height="auto"/> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table><![endif]--> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table></td></tr><tr><td width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:570px;" width="570" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--> <div style="margin:0 auto;max-width:570px"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%"> <tbody> <tr> <td 
+style="direction:ltr;font-size:0;padding:0;text-align:center"> <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:570px;" ><![endif]--> <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top" width="100%"> <tbody> <tr> <td align="center" style="font-size:0;padding:0;word-break:break-word"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0" class="mj-full-width-mobile"> <tbody> <tr> <td style="width:570px" class="mj-full-width-mobile"> <img 
+alt="${imageAlt}" src="${imageUrl}" style="border:0;display:block;outline:0;text-decoration:none;height:auto;width:100%;font-size:14px" width="570" height="auto"/> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table><![endif]--> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table></td></tr><tr><td width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:570px;" width="570" bgcolor="#FFC40C" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--> <div style="background:#ffc40c;background-color:#ffc40c;margin:0 auto;max-width:570px"> <table align="center" border="0" cellpadding="0" cellspacing="0" 
+role="presentation" style="background:#ffc40c;background-color:#ffc40c;width:100%"> <tbody> <tr> <td style="direction:ltr;font-size:0;padding:22px 44px;text-align:center"> <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:482px;" ><![endif]--> <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top" width="100%"> <tbody> <tr> <td align="center" style="font-size:0;padding:0;word-break:break-word"> <div 
+style="font-family:'Source Sans Pro',sans-serif;font-size:23px;font-weight:700;line-height:1;text-align:center;color:#002a3d">${headline}</div> </td> </tr> <tr> <td align="center" style="font-size:0;padding:8px 0;word-break:break-word"> <div style="font-family:'Source Sans Pro',sans-serif;font-size:16px;line-height:24px;text-align:center;color:#002a3d">${bodyText}</div> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table><![endif]--> </td> </tr> </tbody> </table> </div> 
+<!--[if mso | IE]></td></tr></table></td></tr><tr><td width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:570px;" width="570" bgcolor="#FFC40C" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--> <div style="background:#ffc40c;background-color:#ffc40c;margin:0 auto;border-radius:0 0 12px 12px;max-width:570px"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffc40c;background-color:#ffc40c;width:100%;border-radius:0 0 12px 12px"> <tbody> <tr> <td style="direction:ltr;font-size:0;padding:0 30px 44px 30px;text-align:center"> 
+<!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="fall-color-report-header-card-outlook" style="vertical-align:top;width:170px;" ><![endif]--> <div class="mj-column-px-170 mj-outlook-group-fix fall-color-report-header-card" style="font-size:0;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%"> <tbody> <tr> <td style="border-radius:12px;vertical-align:top;padding:0 6px"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%"> <tbody> <tr> <td align="center" style="font-size:0;padding:0;word-break:break-word"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" 
+style="border-collapse:collapse;border-spacing:0" class="mj-full-width-mobile"> <tbody> <tr> <td style="width:158px" class="mj-full-width-mobile"> <a href="${card_1_ctaLink}" target="_blank"> <img alt="${card_1_imageAlt}" src="${card_1_imageUrl}" style="border:0;border-radius:12px 12px 0 0;display:block;outline:0;text-decoration:none;height:auto;width:100%;font-size:14px" width="158" height="auto"/> </a> </td> </tr> </tbody> </table> </td> </tr> <tr> <td align="center" class="fall-color-report-header-button" style="font-size:0;padding:0;word-break:break-word"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;width:158px;line-height:100%"> <tbody> <tr> <td align="center" bgcolor="#ffffff" role="presentation" 
+style="border:none;border-radius:0 0 12px 12px;cursor:auto;mso-padding-alt:10px 8px;background:#fff" valign="middle"> <a href="${card_1_ctaLink}" style="display:inline-block;width:142px;background:#fff;color:#004d71;font-family:'Source Sans Pro',sans-serif;font-size:16px;font-weight:700;line-height:24px;margin:0;text-decoration:none;text-transform:none;padding:10px 8px;mso-padding-alt:0;border-radius:0 0 12px 12px" target="_blank"> <span style="white-space:nowrap">${card_1_ctaText}</span> </a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td><td class="fall-color-report-header-card-outlook" style="vertical-align:top;width:170px;" ><![endif]--> <div 
+class="mj-column-px-170 mj-outlook-group-fix fall-color-report-header-card" style="font-size:0;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%"> <tbody> <tr> <td style="border-radius:12px;vertical-align:top;padding:0 6px"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%"> <tbody> <tr> <td align="center" style="font-size:0;padding:0;word-break:break-word"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0" class="mj-full-width-mobile"> <tbody> <tr> <td style="width:158px" class="mj-full-width-mobile"> <a href="${card_2_ctaLink}" target="_blank"> <img 
+alt="${card_2_imageAlt}" src="${card_2_imageUrl}" style="border:0;border-radius:12px 12px 0 0;display:block;outline:0;text-decoration:none;height:auto;width:100%;font-size:14px" width="158" height="auto"/> </a> </td> </tr> </tbody> </table> </td> </tr> <tr> <td align="center" class="fall-color-report-header-button" style="font-size:0;padding:0;word-break:break-word"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;width:158px;line-height:100%"> <tbody> <tr> <td align="center" bgcolor="#ffffff" role="presentation" style="border:none;border-radius:0 0 12px 12px;cursor:auto;mso-padding-alt:10px 8px;background:#fff" valign="middle"> <a href="${card_2_ctaLink}" 
+style="display:inline-block;width:142px;background:#fff;color:#004d71;font-family:'Source Sans Pro',sans-serif;font-size:16px;font-weight:700;line-height:24px;margin:0;text-decoration:none;text-transform:none;padding:10px 8px;mso-padding-alt:0;border-radius:0 0 12px 12px" target="_blank"> <span style="white-space:nowrap">${card_2_ctaText}</span> </a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td><td class="fall-color-report-header-card-outlook" style="vertical-align:top;width:170px;" ><![endif]--> <div class="mj-column-px-170 mj-outlook-group-fix fall-color-report-header-card" style="font-size:0;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%"> <table border="0" cellpadding="0" 
+cellspacing="0" role="presentation" width="100%"> <tbody> <tr> <td style="border-radius:12px;vertical-align:top;padding:0 6px"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%"> <tbody> <tr> <td align="center" style="font-size:0;padding:0;word-break:break-word"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0" class="mj-full-width-mobile"> <tbody> <tr> <td style="width:158px" class="mj-full-width-mobile"> <a href="${card_3_ctaLink}" target="_blank"> <img alt="${card_3_imageAlt}" src="${card_3_imageUrl}" style="border:0;border-radius:12px 12px 0 0;display:block;outline:0;text-decoration:none;height:auto;width:100%;font-size:14px" width="158" height="auto"/> </a> </td> </tr> </tbody> 
+</table> </td> </tr> <tr> <td align="center" class="fall-color-report-header-button" style="font-size:0;padding:0;word-break:break-word"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;width:158px;line-height:100%"> <tbody> <tr> <td align="center" bgcolor="#ffffff" role="presentation" style="border:none;border-radius:0 0 12px 12px;cursor:auto;mso-padding-alt:10px 8px;background:#fff" valign="middle"> <a href="${card_3_ctaLink}" style="display:inline-block;width:142px;background:#fff;color:#004d71;font-family:'Source Sans Pro',sans-serif;font-size:16px;font-weight:700;line-height:24px;margin:0;text-decoration:none;text-transform:none;padding:10px 8px;mso-padding-alt:0;border-radius:0 0 12px 12px" target="_blank"> <span 
+style="white-space:nowrap">${card_3_ctaText}</span> </a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table><![endif]--> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table></td></tr></table><![endif]--> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table><![endif]--> </td> </tr> </tbody> </table> </div><!--[if mso | IE]></td></tr></table><![endif]-->`.trim();
+      }
+
+      function validate(data) {
+        const errors = {};
+        if (!window.BlockCore.isValidHttpUrl(data.imageUrl)) errors.imageUrl = "Hero image URL must be a valid http(s) URL.";
+        if (!String(data.imageAlt || "").trim()) errors.imageAlt = "Hero image alt text is required.";
+        if (!String(data.headline || "").trim()) errors.headline = "Headline is required.";
+        if (!String(data.bodyText || "").trim()) errors.bodyText = "Body text is required.";
+        if (!window.BlockCore.isValidHttpUrl(data.card_1_imageUrl)) errors.card_1_imageUrl = "Enter a valid http(s) URL.";
+        if (!String(data.card_1_imageAlt || "").trim()) errors.card_1_imageAlt = "Image alt text is required.";
+        if (!String(data.card_1_ctaText || "").trim()) errors.card_1_ctaText = "Button text is required.";
+        if (!window.BlockCore.isValidHttpUrl(data.card_1_ctaLink)) errors.card_1_ctaLink = "Enter a valid http(s) URL.";
+        if (!window.BlockCore.isValidHttpUrl(data.card_2_imageUrl)) errors.card_2_imageUrl = "Enter a valid http(s) URL.";
+        if (!String(data.card_2_imageAlt || "").trim()) errors.card_2_imageAlt = "Image alt text is required.";
+        if (!String(data.card_2_ctaText || "").trim()) errors.card_2_ctaText = "Button text is required.";
+        if (!window.BlockCore.isValidHttpUrl(data.card_2_ctaLink)) errors.card_2_ctaLink = "Enter a valid http(s) URL.";
+        if (!window.BlockCore.isValidHttpUrl(data.card_3_imageUrl)) errors.card_3_imageUrl = "Enter a valid http(s) URL.";
+        if (!String(data.card_3_imageAlt || "").trim()) errors.card_3_imageAlt = "Image alt text is required.";
+        if (!String(data.card_3_ctaText || "").trim()) errors.card_3_ctaText = "Button text is required.";
+        if (!window.BlockCore.isValidHttpUrl(data.card_3_ctaLink)) errors.card_3_ctaLink = "Enter a valid http(s) URL.";
+        return errors;
+      }
+
+      window.BlockCore.initBlock({
+        fieldIds: [
+          "imageUrl",
+          "imageAlt",
+          "headline",
+          "bodyText",
+          "card_1_imageUrl",
+          "card_1_imageAlt",
+          "card_1_ctaText",
+          "card_1_ctaLink",
+          "card_2_imageUrl",
+          "card_2_imageAlt",
+          "card_2_ctaText",
+          "card_2_ctaLink",
+          "card_3_imageUrl",
+          "card_3_imageAlt",
+          "card_3_ctaText",
+          "card_3_ctaLink",
+          "marginTop",
+          "marginBottom",
+        ],
+        defaults,
+        buildEmailHtml,
+        validate,
+        debounceMs: 250,
+      });
+    </script>
+  </body>
+</html>
