@@ -67,7 +67,6 @@
         headline: "Fall Color Conditions",
         bodyText: "Get the latest fall color conditions delivered to your inbox every week. Plan your perfect autumn getaway for this season with fresh updates.",
         ctaText: "Subscribe to the Fall Color Updates",
-        imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/a1505f57-09ba-4475-be8d-cb180b223e72.jpg",
         marginTop: "15",
         marginBottom: "15",
       };
@@ -76,7 +75,6 @@
         const headline = window.BlockCore.escapeHtml(data.headline);
         const bodyText = window.BlockCore.escapeHtml(data.bodyText).replace(/\n/g, "<br/>");
         const ctaText = window.BlockCore.escapeHtml(data.ctaText);
-        const imageUrl = window.BlockCore.escapeHtml(data.imageUrl);
         const marginTop = window.BlockCore.escapeHtml(data.marginTop);
         const marginBottom = window.BlockCore.escapeHtml(data.marginBottom);
 
@@ -99,12 +97,11 @@ style="font-size:0;padding:0;word-break:break-word"> <table border="0" cellpaddi
         const errors = {};
         if (!String(data.headline || "").trim()) errors.headline = "Headline is required.";
         if (!String(data.ctaText || "").trim()) errors.ctaText = "CTA text is required.";
-        if (!window.BlockCore.isValidHttpUrl(data.imageUrl)) errors.imageUrl = "Image URL must be a valid http(s) URL.";
         return errors;
       }
 
       window.BlockCore.initBlock({
-        fieldIds: ["headline", "bodyText", "ctaText", "imageUrl", "marginTop", "marginBottom"],
+        fieldIds: ["headline", "bodyText", "ctaText", "marginTop", "marginBottom"],
         defaults,
         buildEmailHtml,
         validate,

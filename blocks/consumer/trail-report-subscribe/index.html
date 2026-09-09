@@ -64,10 +64,9 @@
 
     <script>
       const defaults = {
-        headline: "Your Weekly Trail Guide",
-        bodyText: "Get the latest hiking conditions, trail tips, and outdoor inspiration to make the most of every adventure.",
+        headline: "Wisconsin Trail Report",
+        bodyText: "Get the latest trail conditions delivered to your inbox every week. Plan your next hike or ride with fresh updates from across the state.",
         ctaText: "Subscribe to Trail Updates",
-        imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/a1505f57-09ba-4475-be8d-cb180b223e72.jpg",
         marginTop: "15",
         marginBottom: "15",
       };
@@ -76,217 +75,33 @@
         const headline = window.BlockCore.escapeHtml(data.headline);
         const bodyText = window.BlockCore.escapeHtml(data.bodyText).replace(/\n/g, "<br/>");
         const ctaText = window.BlockCore.escapeHtml(data.ctaText);
-        const imageUrl = window.BlockCore.escapeHtml(data.imageUrl);
         const marginTop = window.BlockCore.escapeHtml(data.marginTop);
         const marginBottom = window.BlockCore.escapeHtml(data.marginBottom);
 
-        return `<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-        <div style="margin:0px auto;max-width:600px;">
-            <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
-                <tbody>
-                    <tr>
-                        <td
-                            style="direction:ltr;font-size:0px;padding:${marginTop}px 0px ${marginBottom}px 0px;text-align:center;">
-                            <!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-                            <div style="margin:0px auto;max-width:600px;">
-                                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
-                                    style="width:100%;">
-                                    <tbody>
-                                        <tr>
-                                            <td style="direction:ltr;font-size:0px;padding:0px;text-align:center;">
-                                                <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td class="" width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" class="" role="presentation" style="width:600px;" width="600" bgcolor="#6FC21D" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]-->
-                                                <div
-                                                    style="background:#6FC21D;background-color:#6FC21D;margin:0px auto;max-width:600px;">
-                                                    <table align="center" border="0" cellpadding="0" cellspacing="0"
-                                                        role="presentation"
-                                                        style="background:#6FC21D;background-color:#6FC21D;width:100%;">
-                                                        <tbody>
-                                                            <tr>
-                                                                <td
-                                                                    style="direction:rtl;font-size:0px;padding:0px;text-align:center;">
-                                                                    <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><![endif]-->
-                                                                    %%[ /* Define Onclick Subscribe URL */ SET
-                                                                    @OneClickTrailReportSubscribeURL =
-                                                                    CloudPagesURL(5247, "subscriberkey", @SubscriberKey,
-                                                                    "emailaddr", @EmailAddress, "submitType",
-                                                                    "oneclick", "oneclick_action",
-                                                                    "Consumer_TrailReportSubscribe")
-                                                                    ]%%<!--[if mso | IE]><td class="" style="vertical-align:top;width:300px;" ><![endif]-->
-                                                                    <div class="mj-column-per-50 mj-outlook-group-fix"
-                                                                        style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                                                                        <table border="0" cellpadding="0"
-                                                                            cellspacing="0" role="presentation"
-                                                                            width="100%">
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td
-                                                                                        style="vertical-align:top;padding:0px;">
-                                                                                        <table border="0"
-                                                                                            cellpadding="0"
-                                                                                            cellspacing="0"
-                                                                                            role="presentation"
-                                                                                            width="100%">
-                                                                                            <tbody>
-                                                                                                <tr>
-                                                                                                    <td align="center"
-                                                                                                        style="font-size:0px;padding:0px;word-break:break-word;">
-                                                                                                        <table
-                                                                                                            border="0"
-                                                                                                            cellpadding="0"
-                                                                                                            cellspacing="0"
-                                                                                                            role="presentation"
-                                                                                                            style="border-collapse:collapse;border-spacing:0px;"
-                                                                                                            class="mj-full-width-mobile">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td style="width:300px;"
-                                                                                                                        class="mj-full-width-mobile">
-                                                                                                                        <img alt=""
-                                                                                                                            src="${imageUrl}"
-                                                                                                                            style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:14px;"
-                                                                                                                            width="300"
-                                                                                                                            height="auto">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                            </tbody>
-                                                                                        </table>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                    <!--[if mso | IE]></td><td class="" style="vertical-align:top;width:300px;" ><![endif]-->
-                                                                    <div class="mj-column-per-50 mj-outlook-group-fix"
-                                                                        style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
-                                                                        <table border="0" cellpadding="0"
-                                                                            cellspacing="0" role="presentation"
-                                                                            width="100%">
-                                                                            <tbody>
-                                                                                <tr>
-                                                                                    <td
-                                                                                        style="vertical-align:top;padding:0px;">
-                                                                                        <table border="0"
-                                                                                            cellpadding="0"
-                                                                                            cellspacing="0"
-                                                                                            role="presentation"
-                                                                                            width="100%">
-                                                                                            <tbody>
-                                                                                                <tr>
-                                                                                                    <td align="center"
-                                                                                                        style="font-size:0px;padding:0px;word-break:break-word;">
-                                                                                                        <table
-                                                                                                            border="0"
-                                                                                                            cellpadding="0"
-                                                                                                            cellspacing="0"
-                                                                                                            role="presentation"
-                                                                                                            style="border-collapse:collapse;border-spacing:0px;"
-                                                                                                            class="mj-full-width-mobile">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td style="width:300px;"
-                                                                                                                        class="mj-full-width-mobile">
-                                                                                                                        <img alt=""
-                                                                                                                            src="https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/8286740c-5345-43ab-9bd1-0af611789e6e.png"
-                                                                                                                            style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:14px;"
-                                                                                                                            width="300"
-                                                                                                                            height="auto">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td align="center"
-                                                                                                        style="font-size:0px;padding:26px 26px 10px 26px;word-break:break-word;">
-                                                                                                        <table
-                                                                                                            border="0"
-                                                                                                            cellpadding="0"
-                                                                                                            cellspacing="0"
-                                                                                                            role="presentation"
-                                                                                                            style="border-collapse:collapse;border-spacing:0px;">
-                                                                                                            <tbody>
-                                                                                                                <tr>
-                                                                                                                    <td
-                                                                                                                        style="width:78px;">
-                                                                                                                        <img alt=""
-                                                                                                                            src="https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/cbc36f17-54e6-4a45-9002-ddd4f7f7d29b.png"
-                                                                                                                            style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:14px;"
-                                                                                                                            width="78"
-                                                                                                                            height="auto">
-                                                                                                                    </td>
-                                                                                                                </tr>
-                                                                                                            </tbody>
-                                                                                                        </table>
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td align="center"
-                                                                                                        style="font-size:0px;padding:0;word-break:break-word;">
-                                                                                                        <div
-                                                                                                            style="font-family:'Source Sans Pro', Tahoma, Verdana, Segoe, sans-serif;;font-size:18px;font-weight:bold;line-height:1;text-align:center;color:#002A3D;">
-                                                                                                            ${headline}
-                                                                                                        </div>
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td align="center"
-                                                                                                        style="font-size:0px;padding:10px 26px;word-break:break-word;">
-                                                                                                        <div
-                                                                                                            style="font-family:'Source Sans Pro', Tahoma, Verdana, Segoe, sans-serif;;font-size:14px;line-height:21px;text-align:center;color:#002A3D;">
-                                                                                                            ${bodyText}
-                                                                                                        </div>
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td align="center"
-                                                                                                        style="font-size:0px;padding:10px 26px 26px 26px;word-break:break-word;">
-                                                                                                        <div
-                                                                                                            style="font-family:'Source Sans Pro', Tahoma, Verdana, Segoe, sans-serif;;font-size:14px;line-height:1;text-align:center;color:#002A3D;">
-                                                                                                            <a href="%%=RedirectTo(@OneClickTrailReportSubscribeURL)=%%"
-                                                                                                                style="color: #002A3D !important; text-align:center; font-weight:bold;">${ctaText}</a>
-                                                                                                        </div>
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                            </tbody>
-                                                                                        </table>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                    <!--[if mso | IE]></td></tr></table><![endif]-->
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div><!--[if mso | IE]></td></tr></table></td></tr></table><![endif]-->
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div><!--[if mso | IE]></td></tr></table><![endif]-->
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div><!--[if mso | IE]></td></tr></table><![endif]-->`.trim();
+        return `<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--> <div style="margin:0 auto;max-width:600px"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%"> <tbody> <tr> <td style="direction:ltr;font-size:0;padding:${marginTop}px 0 ${marginBottom}px 0;text-align:center"> 
+<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--> <div style="margin:0 auto;max-width:600px"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%"> <tbody> <tr> <td style="direction:ltr;font-size:0;padding:0 15px;text-align:center"> <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><![endif]-->
+ %%[ 
+          /* Define Onclick Subscribe URL */ 
+          SET @OneClickTrailReportSubscribeURL = CloudPagesURL(5247, "subscriberkey", @SubscriberKey, "emailaddr", @EmailAddress, "submitType", "oneclick", "oneclick_action", "Consumer_TrailReportSubscribe") 
+          ]%% <!--[if mso | IE]><tr><td width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:570px;" width="570" bgcolor="#D0E5C3" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--> <div style="background:#d0e5c3;background-color:#d0e5c3;margin:0 auto;border-radius:16px 16px 0 0;max-width:570px"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" 
+style="background:#d0e5c3;background-color:#d0e5c3;width:100%;border-radius:16px 16px 0 0"> <tbody> <tr> <td style="direction:ltr;font-size:0;padding:40px 30px 32px 30px;text-align:center"> <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:510px;" ><![endif]--> <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top" width="100%"> <tbody> <tr> <td align="center" style="font-size:0;padding:0 0 16px 0;word-break:break-word"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" 
+style="border-collapse:collapse;border-spacing:0"> <tbody> <tr> <td style="width:72px"> <img alt="Snow Report" src="https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/cbc36f17-54e6-4a45-9002-ddd4f7f7d29b.png" style="border:0;display:block;outline:0;text-decoration:none;height:auto;width:100%;font-size:14px" width="72" height="auto"/> </td> </tr> </tbody> </table> </td> </tr> <tr> <td align="center" style="font-size:0;padding:0 10px 12px 10px;word-break:break-word"> <div style="font-family:'Source Sans Pro',sans-serif;font-size:20px;font-weight:700;line-height:1;text-align:center;color:#555"><span style="color:#002a3d;text-transform:uppercase">${headline}</span></div> </td> </tr> <tr> <td align="center" style="font-size:0;padding:0 10px 24px 10px;word-break:break-word"> 
+<div style="font-family:'Source Sans Pro',sans-serif;font-size:14px;line-height:21px;text-align:center;color:#002a3d">${bodyText}</div> </td> </tr> <tr> <td align="center" style="font-size:0;padding:0;word-break:break-word"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate;line-height:100%"> <tbody> <tr> <td align="center" bgcolor="#004D71" role="presentation" style="border:none;border-radius:30px;cursor:auto;mso-padding-alt:14px 28px;background:#004d71" valign="middle"> <a href="%%=RedirectTo(@OneClickSnowReportSubscribeURL)=%%" 
+style="display:inline-block;background:#004d71;color:#fff;font-family:'Source Sans Pro',sans-serif;font-size:13px;font-weight:700;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:14px 28px;mso-padding-alt:0;border-radius:30px" target="_blank"> <span style="text-transform:uppercase;letter-spacing:.5px">${ctaText}</span> </a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table><![endif]--> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table></td></tr><tr><td width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:570px;" width="570" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--> 
+<div style="margin:0 auto;border-radius:0 0 16px 16px;max-width:570px"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;border-radius:0 0 16px 16px"> <tbody> <tr> <td style="direction:ltr;font-size:0;padding:0;text-align:center"> <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:570px;" ><![endif]--> <div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#fff;vertical-align:top" width="100%"> <tbody> <tr> <td align="center" 
+style="font-size:0;padding:0;word-break:break-word"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0" class="mj-full-width-mobile"> <tbody> <tr> <td style="width:570px" class="mj-full-width-mobile"> <img alt="" src="https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/00400355-26bc-46db-b976-8cd08ccf0a83.png" style="border:0;display:block;outline:0;text-decoration:none;height:auto;width:100%;font-size:14px" width="570" height="auto"/> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table><![endif]--> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table></td></tr></table><![endif]--> </td> </tr> </tbody> </table> </div> 
+<!--[if mso | IE]></td></tr></table><![endif]--> </td> </tr> </tbody> </table> </div><!--[if mso | IE]></td></tr></table><![endif]-->`.trim();
       }
 
       function validate(data) {
         const errors = {};
         if (!String(data.headline || "").trim()) errors.headline = "Headline is required.";
         if (!String(data.ctaText || "").trim()) errors.ctaText = "CTA text is required.";
-        if (!window.BlockCore.isValidHttpUrl(data.imageUrl)) errors.imageUrl = "Image URL must be a valid http(s) URL.";
         return errors;
       }
 
       window.BlockCore.initBlock({
-        fieldIds: ["headline", "bodyText", "ctaText", "imageUrl", "marginTop", "marginBottom"],
+        fieldIds: ["headline", "bodyText", "ctaText", "marginTop", "marginBottom"],
         defaults,
         buildEmailHtml,
         validate,
