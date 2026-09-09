@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consumer - Card Horizontal(Orange)</title>
+    <link rel="stylesheet" href="../../../assets/dist/css/main.min.css" type="text/css" media="all">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <div class="mb-3" id="sdkStatus" aria-live="polite"></div>
+          <form>
+            <fieldset class="border p-2">
+              <legend>Content</legend>
+              <div class="mb-3">
+                <label for="headline" class="form-label">Headline</label>
+                <input type="text" class="form-control" id="headline">
+                <div class="invalid-feedback" id="headlineError">Headline is required.</div>
+              </div>
+              <div class="mb-3">
+                <label for="subheadline" class="form-label">Sub-Headline</label>
+                <input type="text" class="form-control" id="subheadline">
+              </div>
+              <div class="mb-3">
+                <label for="bodyText" class="form-label">Body</label>
+                <textarea class="form-control" id="bodyText" rows="4"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="ctaText" class="form-label">CTA Text</label>
+                <input type="text" class="form-control" id="ctaText">
+                <div class="invalid-feedback" id="ctaTextError">CTA text is required.</div>
+              </div>
+              <div class="mb-3">
+                <label for="ctaLink" class="form-label">CTA Link</label>
+                <input type="text" class="form-control" id="ctaLink">
+                <div class="invalid-feedback" id="ctaLinkError">CTA link must be a valid http(s) URL.</div>
+              </div>
+              <div class="mb-3">
+                <label for="imageUrl" class="form-label">Image URL</label>
+                <input type="text" class="form-control" id="imageUrl">
+                <div class="invalid-feedback" id="imageUrlError">Image URL must be a valid http(s) URL.</div>
+              </div>
+              <div class="mb-3">
+                <label for="imageAlt" class="form-label">Image Alt Text</label>
+                <input type="text" class="form-control" id="imageAlt">
+              </div>
+            </fieldset>
+            <fieldset class="border p-2 mt-4">
+              <legend>Configuration</legend>
+              <div class="row g-3">
+                <div class="col-6">
+                    <label for="marginTop" class="form-label">Margin Top</label>
+                    <div class="input-group">
+                    <input type="number" class="form-control" id="marginTop" min="0" max="200">
+                    <span class="input-group-text">px</span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="marginBottom" class="form-label">Margin Bottom</label>
+                    <div class="input-group">
+                    <input type="number" class="form-control" id="marginBottom" min="0" max="200">
+                    <span class="input-group-text">px</span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="marginLeft" class="form-label">Margin Left</label>
+                    <div class="input-group">
+                    <input type="number" class="form-control" id="marginLeft" min="0" max="200">
+                    <span class="input-group-text">px</span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="marginRight" class="form-label">Margin Right</label>
+                    <div class="input-group">
+                    <input type="number" class="form-control" id="marginRight" min="0" max="200">
+                    <span class="input-group-text">px</span>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label for="imagePosition" class="form-label">Image Position</label>
+                    <select class="form-select" id="imagePosition">
+                        <option value="ltr">Left</option>
+                        <option value="rtl">Right</option>
+                    </select>
+                </div>
+              </div>
+            </fieldset>
+            <button type="button" class="btn btn-small btn-outline-dark mt-4" id="resetBtn">Reset</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../../assets/dist/js/blocksdk.min.js"></script>
+    <script src="../../../assets/dist/js/block-core.js"></script>
+
+    <script>
+      const defaults = {
+        headline: "Lorem ipsum dolor sit amet",
+        subheadline: "Lorem ipsum dolor",
+        bodyText: "Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.",
+        ctaText: "Lorem ipsum dolor",
+        ctaLink: "https://www.travelwisconsin.com",
+        imageUrl: "https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/91fa7e18-1f11-4af7-ab98-8c976eb34644.jpg",
+        marginTop: "15",
+        marginBottom: "15",
+        marginLeft: "15",
+        marginRight: "15",
+        imagePosition: "ltr"
+      };
+
+      function buildEmailHtml(data) {
+        const headline = window.BlockCore.escapeHtml(data.headline);
+        const subheadline = window.BlockCore.escapeHtml(data.subheadline);
+        const bodyText = window.BlockCore.escapeHtml(data.bodyText).replace(/\n/g, "<br/>");
+        const ctaText = window.BlockCore.escapeHtml(data.ctaText);
+        const ctaLink = window.BlockCore.escapeHtml(data.ctaLink);
+        const imageUrl = window.BlockCore.escapeHtml(data.imageUrl);
+        const imageAlt = window.BlockCore.escapeHtml(data.imageAlt);
+        const marginTop = window.BlockCore.escapeHtml(data.marginTop);
+        const marginBottom = window.BlockCore.escapeHtml(data.marginBottom);
+        const marginLeft = window.BlockCore.escapeHtml(data.marginLeft);
+        const marginRight = window.BlockCore.escapeHtml(data.marginRight);
+        const imagePosition = window.BlockCore.escapeHtml(data.imagePosition); 
+        
+        const contentPadding = (imagePosition == 'ltr') ? '0 0 0 16px' : '0 16px 0 0';
+
+        return `<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--> <div style="margin:0 auto;max-width:600px"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%"> <tbody> <tr> <td style="direction:ltr;font-size:0;padding:${marginTop}px 15px ${marginBottom}px 15px;text-align:center"> 
+<!--[if mso | IE]><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--> <div style="margin:0 auto;max-width:600px"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%"> <tbody> <tr> <td style="direction:ltr;font-size:0;padding:15px 0;text-align:center"> 
+<!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:600px;" width="600" bgcolor="#FCD6B1" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--> <div style="background:#fcd6b1;background-color:#fcd6b1;margin:0 auto;border-radius:16px 16px 0 0;max-width:600px"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#fcd6b1;background-color:#fcd6b1;width:100%;border-radius:16px 16px 0 0"> <tbody> <tr> <td style="direction:ltr;font-size:0;padding:0;text-align:center"> 
+<!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:300px;" ><![endif]--> <div class="mj-column-per-50 mj-outlook-group-fix" style="font-size:0;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%"> <tbody> <tr> <td style="vertical-align:top;padding:25px 15px"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%"> <tbody> <tr> <td align="left" style="font-size:0;padding:0;word-break:break-word"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0" class="mj-full-width-mobile"> <tbody> <tr> <td 
+style="width:270px" class="mj-full-width-mobile"> <a href="${ctaLink}" target="_blank"> <img alt="${imageAlt}" src="https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/91fa7e18-1f11-4af7-ab98-8c976eb34644.jpg" style="border:0;border-radius:16px;display:block;outline:0;text-decoration:none;height:auto;width:100%;font-size:14px" width="270" height="auto"/> </a> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td><td class="center-on-mobile-outlook" style="vertical-align:top;width:300px;" ><![endif]--> <div class="mj-column-per-50 mj-outlook-group-fix center-on-mobile" style="font-size:0;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%"> <table border="0" cellpadding="0" 
+cellspacing="0" role="presentation" width="100%"> <tbody> <tr> <td style="vertical-align:top;padding:25px 15px 25px 15px"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" width="100%"> <tbody> <tr> <td align="left" style="font-size:0;padding:0;word-break:break-word"> <div style="font-family:'Source Sans Pro',sans-serif;font-size:23px;font-weight:700;line-height:1;text-align:left;color:#002a3d">${headline}</div> </td> </tr> <tr> <td align="left" style="font-size:0;padding:0;word-break:break-word"> <div style="font-family:'Source Sans Pro',sans-serif;font-size:16px;font-weight:700;line-height:24px;text-align:left;color:#002a3d">${subheadline}</div> </td> </tr> <tr> <td align="left" style="font-size:0;padding:0;word-break:break-word"> <div 
+style="font-family:'Source Sans Pro',sans-serif;font-size:16px;line-height:20px;text-align:left;color:#002a3d">${bodyText}</div> </td> </tr> <tr> <td align="left" style="font-size:0;padding:0;padding-top:12px;word-break:break-word"> <div style="font-family:'Source Sans Pro',sans-serif;font-size:14px;line-height:1;text-align:left;color:#002a3d"><a href="${ctaLink}" style="color:#004d71!important;text-align:center;font-weight:700">${ctaText}</a></div> </td> </tr> </tbody> </table> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table><![endif]--> </td> </tr> </tbody> </table> </div> 
+<!--[if mso | IE]></td></tr></table></td></tr><tr><td width="600px" ><table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:600px;" width="600" ><tr><td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;"><![endif]--> <div style="margin:0 auto;border-radius:0 0 16px 16px;max-width:600px"> <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;border-radius:0 0 16px 16px"> <tbody> <tr> <td style="direction:ltr;font-size:0;padding:0;text-align:center"> <!--[if mso | IE]><table role="presentation" border="0" cellpadding="0" cellspacing="0"><tr><td style="vertical-align:top;width:600px;" ><![endif]--> <div class="mj-column-per-100 mj-outlook-group-fix" 
+style="font-size:0;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#fff;vertical-align:top" width="100%"> <tbody> <tr> <td align="center" style="font-size:0;padding:0;word-break:break-word"> <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0" class="mj-full-width-mobile"> <tbody> <tr> <td style="width:600px" class="mj-full-width-mobile"> <img alt="" src="https://image.hello.travelwisconsin.com/lib/fe261174736404757d1d71/m/1/01ae560e-a690-413c-9d6b-9c3f06fe32ce.png" style="border:0;display:block;outline:0;text-decoration:none;height:auto;width:100%;font-size:14px" width="600" height="auto"/> </td>
+ </tr> </tbody> </table> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table><![endif]--> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table></td></tr></table><![endif]--> </td> </tr> </tbody> </table> </div> <!--[if mso | IE]></td></tr></table><![endif]--> </td> </tr> </tbody> </table> </div><!--[if mso | IE]></td></tr></table><![endif]-->`.trim();
+      }
+
+      function validate(data) {
+        const errors = {};
+        if (!String(data.headline || "").trim()) errors.headline = "Headline is required.";
+        if (!String(data.ctaText || "").trim()) errors.ctaText = "CTA text is required.";
+        if (!window.BlockCore.isValidHttpUrl(data.ctaLink)) errors.ctaLink = "CTA link must be a valid http(s) URL.";
+        if (!window.BlockCore.isValidHttpUrl(data.imageUrl)) errors.imageUrl = "Image URL must be a valid http(s) URL.";
+        return errors;
+      }
+
+      window.BlockCore.initBlock({
+        fieldIds: ["headline", "subheadline", "bodyText", "ctaText", "ctaLink", "imageUrl", "marginTop", "marginBottom", "marginLeft", "marginRight", "imagePosition"],
+        defaults,
+        buildEmailHtml,
+        validate,
+        debounceMs: 250,
+      });
+    </script>
+  </body>
+</html>
