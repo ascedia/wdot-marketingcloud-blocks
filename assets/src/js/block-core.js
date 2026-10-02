@@ -25,6 +25,15 @@
     }
   }
 
+  function isAmpscript(value) {
+    const v = String(value || "").trim();
+    return v.length > 4 && v.startsWith("%%") && v.endsWith("%%");
+  }
+
+  function isValidHttpUrlOrAmpscript(value) {
+    return isValidHttpUrl(value) || isAmpscript(value);
+  }
+
   function setFieldError(id, message) {
     const input = document.getElementById(id);
     const errorEl = document.getElementById(id + "Error");
@@ -137,5 +146,6 @@
     initBlock,
     escapeHtml,
     isValidHttpUrl,
+    isValidHttpUrlOrAmpscript,
   };
 })();

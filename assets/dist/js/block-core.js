@@ -25,6 +25,13 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       return false;
     }
   }
+  function isAmpscript(value) {
+    var v = String(value || "").trim();
+    return v.length > 4 && v.startsWith("%%") && v.endsWith("%%");
+  }
+  function isValidHttpUrlOrAmpscript(value) {
+    return isValidHttpUrl(value) || isAmpscript(value);
+  }
   function setFieldError(id, message) {
     var input = document.getElementById(id);
     var errorEl = document.getElementById(id + "Error");
@@ -66,11 +73,11 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       return acc;
     }, {});
   }
-  function initSdk(statusElId) {
+  function initSdk(statusElId, sdkConfig) {
     var statusEl = document.getElementById(statusElId);
     var hasSdk = !!(window.sfdc && window.sfdc.BlockSDK);
     var canInitSdk = hasSdk && inIframe();
-    var sdk = canInitSdk ? new window.sfdc.BlockSDK() : null;
+    var sdk = canInitSdk ? new window.sfdc.BlockSDK(sdkConfig) : null;
     if (!hasSdk) {
       if (statusEl) statusEl.textContent = "BlockSDK failed to load.";
     } else if (!sdk) {
@@ -95,8 +102,9 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       _config$resetBtnId = config.resetBtnId,
       resetBtnId = _config$resetBtnId === void 0 ? "resetBtn" : _config$resetBtnId,
       _config$showErrors = config.showErrors,
-      showErrors = _config$showErrors === void 0 ? true : _config$showErrors;
-    var sdk = initSdk(statusElId);
+      showErrors = _config$showErrors === void 0 ? true : _config$showErrors,
+      sdkConfig = config.sdkConfig;
+    var sdk = initSdk(statusElId, sdkConfig);
     function syncToBlock() {
       var data = getFormValues(fieldIds);
       var errors = validate(data);
@@ -134,6 +142,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
   window.BlockCore = {
     initBlock: initBlock,
     escapeHtml: escapeHtml,
-    isValidHttpUrl: isValidHttpUrl
+    isValidHttpUrl: isValidHttpUrl,
+    isValidHttpUrlOrAmpscript: isValidHttpUrlOrAmpscript
   };
 })();

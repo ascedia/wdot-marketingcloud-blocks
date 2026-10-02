@@ -31,7 +31,7 @@
             <div class="mb-3">
               <label for="ctaLink" class="form-label">CTA Link</label>
               <input type="text" class="form-control" id="ctaLink">
-              <div class="invalid-feedback" id="ctaLinkError">CTA link must be a valid http(s) URL.</div>
+              <div class="invalid-feedback" id="ctaLinkError">CTA link must be a valid http(s) URL or AMPscript.</div>
             </div>
             <div class="mb-3">
               <label for="ctaStyle" class="form-label">CTA Style</label>
@@ -120,7 +120,7 @@ style="border:none;border-radius:100px;cursor:auto;mso-padding-alt:10px 25px;bac
         const errors = {};
         if (!String(data.headline || "").trim()) errors.headline = "Headline is required.";
         if (!String(data.ctaText || "").trim()) errors.ctaText = "CTA text is required.";
-        if (!window.BlockCore.isValidHttpUrl(data.ctaLink)) errors.ctaLink = "CTA link must be a valid http(s) URL.";
+        if (!window.BlockCore.isValidHttpUrlOrAmpscript(data.ctaLink)) errors.ctaLink = "CTA link must be a valid http(s) URL or AMPscript.";
         if (!window.BlockCore.isValidHttpUrl(data.imageUrl)) errors.imageUrl = "Image URL must be a valid http(s) URL.";
         return errors;
       }
